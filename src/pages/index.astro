@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "@components/SiteHeader.astro";
+import Hero from "@components/Hero.astro";
+import About from "@components/About.astro";
+import GalleryGrid from "@components/GalleryGrid.astro";
+import VideoSection from "@components/VideoSection.astro";
+import PanoramaSection from "@components/PanoramaSection.astro";
+import ContactSection from "@components/ContactSection.astro";
+import Lightbox from "@components/Lightbox.astro";
+import { featuredWorks, panoramas, site, videos } from "@data/site";
+
+const navItems = [
+  { href: "#works", label: "作品" },
+  { href: "/archive/", label: "档案馆" },
+  { href: "#video", label: "视频" },
+  { href: "#panorama", label: "全景" },
+  { href: "/panorama-viewer/", label: "查看器" },
+  { href: "#about", label: "简介" },
+  { href: "#contact", label: "联系" }
+];
+---
+
+<BaseLayout title={site.title} description="邹羽轩个人影像作品集，收集摄影、个人视频与360度全景作品。">
+  <SiteHeader title={site.navTitle} items={navItems} />
+  <main id="top">
+    <Hero eyebrow={site.eyebrow} name={site.name} role={site.role} copy={site.heroCopy} image={site.heroImage} imageAlt={site.heroAlt} />
+    <GalleryGrid
+      id="works"
+      kicker="SELECTED WORKS"
+      title="作品集"
+      copy="首页只放精选。更多照片，收在档案馆。"
+      items={featuredWorks}
+      actionHref="/archive/"
+      actionLabel="进入档案馆"
+    />
+    <VideoSection items={videos} />
+    <PanoramaSection panoramas={panoramas} />
+    <About title={site.aboutTitle} copy={site.aboutCopy} />
+    <ContactSection email={site.email} wechat={site.wechat} socials={site.socials} qr={site.wechatQr} />
+  </main>
+  <Lightbox />
+  <script>
+    import "@scripts/gallery";
+    import "@scripts/panorama";
+  </script>
+</BaseLayout>

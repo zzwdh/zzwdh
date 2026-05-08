@@ -1,0 +1,139 @@
+---
+import { Picture } from "astro:assets";
+import SiteHeader from "@components/SiteHeader.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { archiveWorks, site, type WorkItem } from "@data/site";
+
+type Props = {
+  work: WorkItem;
+};
+
+export function getStaticPaths() {
+  return archiveWorks.map((work) => ({
+    params: { slug: work.slug },
+    props: { work }
+  }));
+}
+
+const { work } = Astro.props;
+const currentIndex = archiveWorks.findIndex((item) => item.slug === work.slug);
+const previousWork = archiveWorks[(currentIndex - 1 + archiveWorks.length) % archiveWorks.length];
+const nextWork = archiveWorks[(currentIndex + 1) % archiveWorks.length];
+
+const navItems = [
+  { href: "/", label: "首页" },
+  { href: "/archive/", label: "档案馆" },
+  { href: "/#panorama", label: "全景" },
+  { href: "/#contact", label: "联系" }
+];
+---
+
+<BaseLayout title={`${work.title} | ${site.title}`} description={work.description}>
+  <SiteHeader title={site.navTitle} items={navItems} homeHref="/" />
+  <main id="top" class:list={["work-detail-page", `detail-style-${work.detail.style}`]}>
+    <a class="back-link" href="/archive/">返回档案馆</a>
+
+    <article class="work-detail">
+      <header class="work-detail-header">
+        <p class="section-kicker">{work.detail.eyebrow ?? work.label}</p>
+        <h1>{work.detail.headline ?? work.title}</h1>
+        <p>{work.description}</p>
+      </header>
+
+      <div class="work-detail-image">
+        {
+          work.image && (
+            <Picture
+              src={work.image}
+              alt={work.alt}
+              formats={["avif", "webp"]}
+              widths={[480, 768, 1120, 1440]}
+              width={1440}
+              sizes="(max-width: 900px) 100vw, 72vw"
+              quality={70}
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
+          )
+        }
+      </div>
+
+      <section class="work-detail-copy">
+        <div>
+          {work.detail.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+        {
+          work.detail.meta && (
+            <dl class="work-meta">
+              {
+                work.detail.meta.map((item) => (
+                  <div>
+                    <dt>{item.label}</dt>
+                    <dd>{item.value}</dd>
+                  </div>
+                ))
+              }
+            </dl>
+          )
+        }
+      </section>
+
+      {
+        work.tags && (
+          <div class="work-tags" aria-label="作品标签">
+            {work.tags.map((tag) => <span>{tag}</span>)}
+          </div>
+        )
+      }
+    </article>
+
+    <nav class="work-detail-nav" aria-label="相邻作品">
+      <a href={`/works/${previousWork.slug}/`}>上一张：{previousWork.title}</a>
+      <a href={`/works/${nextWork.slug}/`}>下一张：{nextWork.title}</a>
+    </nav>
+  </main>
+
+  <aside class="story-nudge" data-story-nudge aria-hidden="true">
+    <button class="story-nudge-main" type="button" data-story-open>
+      <span>想看这张照片的故事吗？</span>
+      <strong>查看故事</strong>
+    </button>
+    <button class="story-nudge-dismiss" type="button" data-story-dismiss aria-label="暂时不看">×</button>
+  </aside>
+
+  <div class="story-backdrop" data-story-close></div>
+  <aside class="story-panel" data-story-panel role="dialog" aria-modal="true" aria-hidden="true" aria-label={`${work.title}的故事`}>
+    <button class="story-panel-close" type="button" data-story-close aria-label="关闭故事">×</button>
+    <p class="section-kicker">{work.detail.eyebrow ?? work.label}</p>
+    <h2>{work.detail.headline ?? work.title}</h2>
+    <div class="story-panel-body">
+      {work.detail.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+    {
+      work.detail.meta && (
+        <dl class="work-meta story-panel-meta">
+          {
+            work.detail.meta.map((item) => (
+              <div>
+                <dt>{item.label}</dt>
+                <dd>{item.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      )
+    }
+    {
+      work.tags && (
+        <div class="work-tags story-panel-tags" aria-label="作品标签">
+          {work.tags.map((tag) => <span>{tag}</span>)}
+        </div>
+      )
+    }
+  </aside>
+
+  <script>
+    import "@scripts/story-nudge";
+  </script>
+</BaseLayout>

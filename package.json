@@ -1,0 +1,25 @@
+{
+  "name": "zou-yuxuan-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/copy-vendor.mjs",
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev --host 127.0.0.1",
+    "prebuild": "node scripts/copy-vendor.mjs",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "postbuild": "node scripts/prune-dist.mjs",
+    "prepreview": "node scripts/copy-vendor.mjs",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview --host 127.0.0.1",
+    "check": "ASTRO_TELEMETRY_DISABLED=1 astro sync && tsc --noEmit",
+    "clean": "node scripts/clean.mjs",
+    "budget": "node scripts/performance-budget.mjs"
+  },
+  "dependencies": {
+    "astro": "^6.3.0",
+    "pannellum": "^2.5.7"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}

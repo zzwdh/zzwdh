@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "@components/SiteHeader.astro";
+import { panoramas, site } from "@data/site";
+
+const navItems = [
+  { href: "/", label: "首页" },
+  { href: "/archive/", label: "档案馆" },
+  { href: "/#panorama", label: "全景作品" },
+  { href: "/#contact", label: "联系" }
+];
+---
+
+<BaseLayout title={`免费在线全景照片查看器 | ${site.name}`} description="免费的在线360度全景照片查看器，支持本地全景照片在浏览器中直接预览。">
+  <SiteHeader title="全景查看器" items={navItems} homeHref="/" />
+  <main id="top" class="viewer-page">
+    <section class="viewer-tool" data-online-panorama-viewer>
+      <div class="viewer-control">
+        <p class="section-kicker">FREE 360 VIEWER</p>
+        <h1>在线全景照片查看器</h1>
+        <p>选择一张全景照片，直接在浏览器里打开。</p>
+        <div class="viewer-actions">
+          <label class="button button-primary viewer-file-label">
+            选择照片
+            <input class="viewer-file" type="file" accept="image/*" />
+          </label>
+          <button class="button button-ghost" type="button" data-viewer-clear>清空</button>
+        </div>
+        <div class="viewer-samples" aria-label="站内全景样片">
+          <span>站内全景</span>
+          {
+            panoramas.map((item) => (
+              <button
+                class="viewer-sample"
+                type="button"
+                data-sample-panorama={item.panoramaUrl}
+                data-sample-title={item.title}
+                data-yaw={item.initialYaw}
+                data-pitch={item.initialPitch}
+              >
+                {item.title}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="viewer-stage" data-viewer-drop>
+        <div class="viewer-empty">
+          <strong>拖入全景照片</strong>
+          <span>或选择本地文件</span>
+        </div>
+        <div id="online-panorama-viewer" class="online-panorama-canvas" aria-label="在线360度全景照片查看器"></div>
+      </div>
+      <p class="viewer-status" role="status" aria-live="polite">等待照片。</p>
+    </section>
+  </main>
+  <script>
+    import "@scripts/panorama-viewer";
+  </script>
+</BaseLayout>

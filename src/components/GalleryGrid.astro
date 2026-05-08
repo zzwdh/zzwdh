@@ -1,0 +1,81 @@
+---
+import { Picture } from "astro:assets";
+import type { WorkItem } from "@data/site";
+
+type Props = {
+  id: string;
+  kicker: string;
+  title: string;
+  copy: string;
+  items: WorkItem[];
+  sectionClass?: string;
+  actionHref?: string;
+  actionLabel?: string;
+};
+
+const { id, kicker, title, copy, items, sectionClass = "", actionHref, actionLabel } = Astro.props;
+
+const categoryLabels = {
+  photography: "照片",
+  drone: "航拍",
+  video: "视频",
+  panorama: "全景"
+};
+---
+
+<section id={id} class:list={["section work-section", sectionClass]}>
+  <div class="section-heading">
+    <div>
+      <p class="section-kicker">{kicker}</p>
+      <h2>{title}</h2>
+    </div>
+    <div class="section-heading-copy">
+      <p>{copy}</p>
+      {actionHref && actionLabel && <a class="section-action" href={actionHref}>{actionLabel}</a>}
+    </div>
+  </div>
+
+  <div class="gallery-grid" data-gallery={id}>
+    {
+      items.map((item) => {
+        const hasImage = Boolean(item.image);
+        return (
+          <button
+            class:list={[
+              "gallery-item",
+              item.layout === "wide" && "gallery-item-wide",
+              item.layout === "tall" && "gallery-item-tall",
+              !hasImage && "is-missing"
+            ]}
+            data-art
+            data-label={item.label}
+            data-placeholder={item.placeholder ?? "待补作品"}
+            data-caption={item.title}
+            data-description={item.description}
+            type="button"
+            disabled={!hasImage}
+            aria-label={hasImage ? `预览${item.title}` : item.placeholder ?? item.title}
+          >
+            {
+              item.image && (
+                <Picture
+                  src={item.image}
+                  alt={item.alt}
+                  formats={["avif", "webp"]}
+                  widths={[480, 768, 1120, 1440]}
+                  width={1440}
+                  sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+                  quality={70}
+                  loading="lazy"
+                  decoding="async"
+                />
+              )
+            }
+            <span class="gallery-title">{item.title}</span>
+            <span class="gallery-category">{categoryLabels[item.category]}</span>
+          </button>
+        );
+      })
+    }
+  </div>
+</section>

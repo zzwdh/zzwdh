@@ -1,0 +1,79 @@
+---
+import { Picture } from "astro:assets";
+import type { VideoItem } from "@data/site";
+
+type Props = {
+  items: VideoItem[];
+};
+
+const { items } = Astro.props;
+---
+
+<section id="video" class="section video-section">
+  <div class="section-heading">
+    <div>
+      <p class="section-kicker">PERSONAL VIDEO</p>
+      <h2>个人视频</h2>
+    </div>
+    <p>照片之外，也有一些会动的片段。暂时不多，慢慢补。</p>
+  </div>
+
+  <div class="video-grid">
+    {
+      items.map((item) => {
+        const coverContent = (
+          <>
+            {
+              item.image && (
+                <Picture
+                  src={item.image}
+                  alt={item.alt}
+                  formats={["avif", "webp"]}
+                  widths={[480, 768, 1120]}
+                  width={1120}
+                  sizes="(max-width: 900px) 100vw, 33vw"
+                  quality={78}
+                  loading="lazy"
+                  decoding="async"
+                />
+              )
+            }
+            <span class="play-badge">PLAY</span>
+          </>
+        );
+
+        return (
+          <article class="video-card">
+            {
+              item.externalUrl ? (
+                <a
+                  class:list={["video-cover", !item.image && "is-missing"]}
+                  href={item.externalUrl}
+                  data-art
+                  data-label={item.label}
+                  data-placeholder={item.placeholder ?? "待放入视频"}
+                >
+                  {coverContent}
+                </a>
+              ) : (
+                <div
+                  class:list={["video-cover", !item.image && "is-missing"]}
+                  data-art
+                  data-label={item.label}
+                  data-placeholder={item.placeholder ?? "待放入视频"}
+                >
+                  {coverContent}
+                </div>
+              )
+            }
+            <div>
+              <p>{item.label}</p>
+              <h3>{item.title}</h3>
+              <span class="video-link">{item.externalUrl ? "查看视频" : "待补链接"}</span>
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
+</section>

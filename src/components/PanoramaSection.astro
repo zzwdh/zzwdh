@@ -1,0 +1,72 @@
+---
+import type { PanoramaItem } from "@data/site";
+
+type Props = {
+  panoramas: PanoramaItem[];
+};
+
+const { panoramas } = Astro.props;
+const firstPanorama = panoramas[0];
+---
+
+<section id="panorama" class="section panorama-section" data-panorama-section>
+  <div class="section-heading">
+    <div>
+      <p class="section-kicker">360 PANORAMA</p>
+      <h2>全景空间</h2>
+    </div>
+    <div class="section-heading-copy">
+      <p>把一张照片，转成可以转身看的地方。</p>
+    </div>
+  </div>
+
+  <div class="panorama-showcase">
+    <div class="panorama-stage">
+      <div class="panorama-preview" data-art data-label="360 VIEW">
+        {
+          firstPanorama && (
+            <img
+              src={firstPanorama.previewUrl}
+              alt={firstPanorama.alt}
+              loading="lazy"
+              decoding="async"
+              width="1600"
+              height="800"
+            />
+          )
+        }
+        <div class="panorama-choice-list" aria-label="选择全景作品">
+          {
+            panoramas.map((item, index) => (
+              <button
+                class:list={["panorama-launch", index === 0 && "is-selected"]}
+                type="button"
+                data-panorama={item.panoramaUrl}
+                data-yaw={item.initialYaw}
+                data-pitch={item.initialPitch}
+                data-title={item.title}
+                data-preview={item.previewUrl}
+                aria-controls="panorama-viewer"
+              >
+                {item.title}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+      <div id="panorama-viewer" class="panorama-viewer" aria-label="360度全景空间"></div>
+      <p class="panorama-status" role="status" aria-live="polite"></p>
+    </div>
+    <div class="panorama-copy">
+      <p>LOOK AROUND</p>
+      <h3>你不用站在原地，也能看见四周。</h3>
+      <p>{firstPanorama?.description ?? "全景作品会慢慢补进来。"}</p>
+      <div class="panorama-points">
+        <span>{panoramas.length} 张全景</span>
+        <span>拖拽浏览</span>
+        <span>原图按需加载</span>
+      </div>
+      <a class="section-action" href="/panorama-viewer/">打开免费全景查看器</a>
+    </div>
+  </div>
+</section>

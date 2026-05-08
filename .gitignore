@@ -1,0 +1,7 @@
+.DS_Store
+node_modules/
+.astro/
+dist/
+npm-debug.log*
+README 2.md
+assets/panorama/

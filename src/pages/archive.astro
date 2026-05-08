@@ -1,0 +1,25 @@
+---
+import ArchiveGrid from "@components/ArchiveGrid.astro";
+import SiteHeader from "@components/SiteHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { archiveWorks, site } from "@data/site";
+
+const navItems = [
+  { href: "/", label: "首页" },
+  { href: "/archive/", label: "档案馆" },
+  { href: "/#panorama", label: "全景" },
+  { href: "/#contact", label: "联系" }
+];
+---
+
+<BaseLayout title={`档案馆 | ${site.title}`} description="邹羽轩个人影像作品档案馆，收集更多摄影与航拍作品。">
+  <SiteHeader title={site.navTitle} items={navItems} homeHref="/" />
+  <main id="top" class="archive-main">
+    <section class="archive-hero">
+      <p class="section-kicker">ARCHIVE</p>
+      <h1>档案馆</h1>
+      <p>首页只负责第一眼。这里收下更多照片，慢慢长成一座小库房。</p>
+    </section>
+    <ArchiveGrid items={archiveWorks} />
+  </main>
+</BaseLayout>

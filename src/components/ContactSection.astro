@@ -1,0 +1,57 @@
+---
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import type { SocialLink } from "@data/site";
+
+type Props = {
+  email: string;
+  wechat: string;
+  socials: SocialLink[];
+  qr: ImageMetadata;
+};
+
+const { email, wechat, socials, qr } = Astro.props;
+---
+
+<section id="contact" class="contact-section">
+  <div class="contact-inner">
+    <p class="section-kicker">CONTACT</p>
+    <h2>喜欢这些画面，可以找我聊聊。</h2>
+    <p>发邮件，或者加微信。都可以。</p>
+    <div class="contact-actions">
+      <a class="button button-primary" href={`mailto:${email}`}>{email}</a>
+      <span class="contact-chip">微信：{wechat}</span>
+    </div>
+    <div class="social-links" aria-label="社交媒体">
+      <span>社媒</span>
+      {
+        socials.map((item) =>
+          item.href ? (
+            <a href={item.href} target="_blank" rel="noreferrer" aria-label={`打开${item.label}`}>
+              <strong>{item.label}</strong>
+              <span>{item.value}</span>
+            </a>
+          ) : (
+            <span class="social-static">
+              <strong>{item.label}</strong>
+              <span>{item.value}</span>
+            </span>
+          )
+        )
+      }
+    </div>
+    <div class="qr-card" data-art data-label="WECHAT QR">
+      <Picture
+        src={qr}
+        alt="微信二维码"
+        formats={["webp"]}
+        widths={[340, 680]}
+        width={340}
+        sizes="170px"
+        quality={82}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+</section>
