@@ -1,0 +1,18 @@
+{
+  "title": "全景 02",
+  "panorama": {
+    "type": "public",
+    "url": "/panorama/pano-02.JPG"
+  },
+  "preview": {
+    "type": "public",
+    "url": "/panorama/pano-02-poster.jpg",
+    "width": 1600,
+    "height": 800
+  },
+  "alt": "360度全景照片 02",
+  "description": "第一张全景。打开后直接进入原图浏览。",
+  "initialYaw": 0,
+  "initialPitch": 0,
+  "order": 1
+}

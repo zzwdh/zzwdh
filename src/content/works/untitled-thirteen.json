@@ -1,0 +1,27 @@
+{
+  "title": "水边白鸭",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-13" },
+  "alt": "白鸭站在水边的摄影作品",
+  "description": "它站在水边，像认真守着自己的一小块世界。",
+  "label": "WHITE DUCK",
+  "featured": true,
+  "featuredOrder": 7,
+  "archive": true,
+  "archiveOrder": 10,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "line",
+    "eyebrow": "BY THE WATER",
+    "headline": "一只白鸭，把水边站成了舞台。",
+    "paragraphs": [
+      "这张照片很日常，但我喜欢它的姿态。白鸭站在窄窄的边缘上，背景被虚化，注意力就只剩下它。",
+      "有些画面不需要复杂内容。只要主体足够安定，周围的一切都会自动退开。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["白鸭", "水边", "日常"]
+}

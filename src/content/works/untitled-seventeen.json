@@ -1,0 +1,26 @@
+{
+  "title": "云下城市",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-17" },
+  "alt": "城市上空云层翻涌的摄影作品",
+  "description": "云层在城市上方翻涌，光从缝隙里落下来。",
+  "label": "CITY CLOUDS",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 14,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "poetic",
+    "eyebrow": "SKY OVER CITY",
+    "headline": "城市很低，天空很重。",
+    "paragraphs": [
+      "这张照片里，城市只是底部的一条线。真正占据画面的是云，是被风推开的层次和从缝隙里漏出来的光。",
+      "我喜欢这种比例。它让熟悉的城市突然变小，也让那一刻的天气变成了主角。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["城市", "云层", "光"]
+}

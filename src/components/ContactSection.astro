@@ -1,16 +1,17 @@
 ---
-import { Picture } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import type { SocialLink } from "@data/site";
+import ResponsiveImage from "@components/ResponsiveImage.astro";
 
 type Props = {
   email: string;
   wechat: string;
   socials: SocialLink[];
-  qr: ImageMetadata;
+  qr?: ImageMetadata;
+  qrUrl?: string;
 };
 
-const { email, wechat, socials, qr } = Astro.props;
+const { email, wechat, socials, qr, qrUrl } = Astro.props;
 ---
 
 <section id="contact" class="contact-section">
@@ -41,8 +42,9 @@ const { email, wechat, socials, qr } = Astro.props;
       }
     </div>
     <div class="qr-card" data-art data-label="WECHAT QR">
-      <Picture
-        src={qr}
+      <ResponsiveImage
+        image={qr}
+        imageUrl={qrUrl}
         alt="微信二维码"
         formats={["webp"]}
         widths={[340, 680]}

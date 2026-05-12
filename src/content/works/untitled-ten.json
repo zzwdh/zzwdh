@@ -1,0 +1,26 @@
+{
+  "title": "红色舞台",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-10" },
+  "alt": "红色烟雾与人物剪影的舞台摄影作品",
+  "description": "红色烟雾漫上来，人物只剩下一个闪亮的轮廓。",
+  "label": "RED STAGE",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 7,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "line",
+    "eyebrow": "ON STAGE",
+    "headline": "烟雾把舞台推远，红色把人留住。",
+    "paragraphs": [
+      "这张照片里最强的是颜色。红色烟雾把空间变得很厚，人物站在边缘，像从光里被切出来。",
+      "我喜欢这种不完整的观看。你看不清全部，却能感觉到舞台上的温度和节奏。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2025" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["舞台", "红色", "烟雾"]
+}

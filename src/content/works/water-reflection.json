@@ -1,0 +1,28 @@
+{
+  "title": "水面枝影",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-01" },
+  "alt": "水面枝影摄影作品",
+  "description": "蓝色的水面收住了风，也收住了一截枝影。",
+  "label": "REFLECTION",
+  "layout": "wide",
+  "featured": true,
+  "featuredOrder": 1,
+  "archive": true,
+  "archiveOrder": 1,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "poetic",
+    "eyebrow": "QUIET WATER",
+    "headline": "水面没有说话，枝影替它轻轻动了一下。",
+    "paragraphs": [
+      "这张照片最吸引我的地方，是它几乎没有事件。只有蓝色、波纹和一截从画面外伸进来的树枝。",
+      "我喜欢这种安静的边缘感。主体没有站在正中央，却让整张照片有了呼吸。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["水面", "枝影", "安静"]
+}

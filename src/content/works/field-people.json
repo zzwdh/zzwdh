@@ -1,0 +1,27 @@
+{
+  "title": "花海人物",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-03" },
+  "alt": "花海人物摄影作品",
+  "description": "花海很大，人只出现一点点，尺度就被看见了。",
+  "label": "FIELD 02",
+  "featured": true,
+  "featuredOrder": 3,
+  "archive": true,
+  "archiveOrder": 3,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "line",
+    "eyebrow": "A PERSON IN COLOR",
+    "headline": "人很小，颜色很大。",
+    "paragraphs": [
+      "如果画面里只有花，它会是一片颜色；有了远处那两个小小的人，它才突然有了距离。",
+      "我按下快门，是因为这个比例刚刚好。人没有打扰风景，只是让风景变得可被感知。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["人物", "花海", "尺度"]
+}

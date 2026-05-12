@@ -1,0 +1,27 @@
+{
+  "title": "花田路径",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-02" },
+  "alt": "花田路径摄影作品",
+  "description": "黄色铺满地面，一条路把春天带向远处。",
+  "label": "FIELD 01",
+  "featured": true,
+  "featuredOrder": 2,
+  "archive": true,
+  "archiveOrder": 2,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "story",
+    "eyebrow": "FIELD NOTE",
+    "headline": "花开得很满，路只留一条。",
+    "paragraphs": [
+      "这张照片里的颜色很热闹，但我最先看到的其实是那条路。它把大片黄色分开，也把视线慢慢引向远处。",
+      "远处的建筑和近处的花田放在一起，有一种很现实的春天：自然很近，城市也没有走远。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["花田", "路径", "秩序"]
+}

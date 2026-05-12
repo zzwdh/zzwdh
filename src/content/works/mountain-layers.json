@@ -1,0 +1,28 @@
+{
+  "title": "远山云层",
+  "category": "drone",
+  "image": { "type": "local", "key": "drone/drone-02" },
+  "alt": "远山云层航拍作品",
+  "description": "群山一层一层退远，云把距离揉得很轻。",
+  "label": "MOUNTAIN LAYERS",
+  "featured": true,
+  "featuredOrder": 9,
+  "archive": true,
+  "archiveOrder": 18,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "poetic",
+    "eyebrow": "LAYERS",
+    "headline": "远处的山，被云一层一层折起来。",
+    "paragraphs": [
+      "这张航拍里最重要的是层次。山峰、云海、天光和远处的轮廓，被压成一层又一层的蓝灰色。",
+      "我喜欢它的距离感。不是宏大的那种远，而是每一层都在慢慢退后。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" },
+      { "label": "类型", "value": "航拍" }
+    ]
+  },
+  "tags": ["航拍", "远山", "云层"]
+}

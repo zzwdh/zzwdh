@@ -6,12 +6,13 @@
   "scripts": {
     "predev": "node scripts/copy-vendor.mjs",
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev --host 127.0.0.1",
-    "prebuild": "node scripts/copy-vendor.mjs",
+    "prebuild": "node scripts/prebuild.mjs",
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
     "postbuild": "node scripts/prune-dist.mjs",
     "prepreview": "node scripts/copy-vendor.mjs",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview --host 127.0.0.1",
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro sync && tsc --noEmit",
+    "validate:content": "node scripts/validate-content.mjs",
     "clean": "node scripts/clean.mjs",
     "budget": "node scripts/performance-budget.mjs"
   },

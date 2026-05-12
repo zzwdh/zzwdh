@@ -1,0 +1,26 @@
+{
+  "title": "湖边行人",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-19" },
+  "alt": "黑白湖边行人与远山的摄影作品",
+  "description": "黑白湖面前，两个人安静地从山影旁走过。",
+  "label": "LAKE WALK",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 16,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "story",
+    "eyebrow": "MONO LAKE",
+    "headline": "山在后面，人从前面走过。",
+    "paragraphs": [
+      "黑白让这张照片少了很多干扰。湖、山、树和人都变成了明暗关系，画面也因此更像一段停顿。",
+      "我喜欢那两个行人的位置。他们没有成为风景的中心，却让风景有了被经过的感觉。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["黑白", "湖边", "行人"]
+}

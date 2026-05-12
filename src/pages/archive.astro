@@ -2,24 +2,57 @@
 import ArchiveGrid from "@components/ArchiveGrid.astro";
 import SiteHeader from "@components/SiteHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { archiveWorks, site } from "@data/site";
+import { getArchiveWorks, getSite } from "@data/site";
+import { innerNavItems } from "@data/navigation";
 
-const navItems = [
-  { href: "/", label: "首页" },
-  { href: "/archive/", label: "档案馆" },
-  { href: "/#panorama", label: "全景" },
-  { href: "/#contact", label: "联系" }
+const site = await getSite();
+const archiveWorks = await getArchiveWorks();
+const categoryLabels = {
+  photography: "照片",
+  drone: "航拍"
+};
+const categoryOptions = [
+  { value: "all", label: "全部", count: archiveWorks.length },
+  ...Object.entries(categoryLabels)
+    .map(([value, label]) => ({
+      value,
+      label,
+      count: archiveWorks.filter((item) => item.category === value).length
+    }))
+    .filter((item) => item.count > 0)
 ];
+
 ---
 
 <BaseLayout title={`档案馆 | ${site.title}`} description="邹羽轩个人影像作品档案馆，收集更多摄影与航拍作品。">
-  <SiteHeader title={site.navTitle} items={navItems} homeHref="/" />
+  <SiteHeader title={site.navTitle} items={innerNavItems} homeHref="/" />
   <main id="top" class="archive-main">
     <section class="archive-hero">
       <p class="section-kicker">ARCHIVE</p>
       <h1>档案馆</h1>
       <p>首页只负责第一眼。这里收下更多照片，慢慢长成一座小库房。</p>
     </section>
+    <div class="archive-tools" aria-label="档案馆筛选">
+      <div class="archive-filter-group" role="list" data-archive-filters>
+        {
+          categoryOptions.map((item) => (
+            <button
+              class="archive-filter"
+              type="button"
+              data-archive-filter={item.value}
+              aria-pressed={item.value === "all" ? "true" : "false"}
+            >
+              <span>{item.label}</span>
+              <small>{item.count}</small>
+            </button>
+          ))
+        }
+      </div>
+      <p class="archive-count" data-archive-count>共 {archiveWorks.length} 张</p>
+    </div>
     <ArchiveGrid items={archiveWorks} />
   </main>
+  <script>
+    import "@scripts/archive-filter";
+  </script>
 </BaseLayout>

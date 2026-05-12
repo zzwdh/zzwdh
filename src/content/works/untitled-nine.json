@@ -1,0 +1,26 @@
+{
+  "title": "光的回声",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-09" },
+  "alt": "夜色中光轨形成抽象线条的摄影作品",
+  "description": "光被拉成长线，在黑夜里反复回响。",
+  "label": "LIGHT ECHO",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 6,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "series",
+    "eyebrow": "LIGHT TRACE",
+    "headline": "看不清形状的时候，光自己变成了形状。",
+    "paragraphs": [
+      "这张更像一次实验。光源在移动中被拖长，原本具体的东西消失了，只剩下方向、节奏和重复。",
+      "我喜欢这种不完全可控的画面。它不像记录一个对象，而像记录光经过镜头时留下的痕迹。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2025" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["光轨", "夜色", "抽象"]
+}

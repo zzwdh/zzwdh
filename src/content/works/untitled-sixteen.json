@@ -1,0 +1,28 @@
+{
+  "title": "城市夹缝",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-16" },
+  "alt": "高楼之间城市街道的竖幅摄影作品",
+  "description": "高楼向两边退开，街道在中间往远处延伸。",
+  "label": "CITY LINE",
+  "layout": "tall",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 13,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "technical",
+    "eyebrow": "URBAN FRAME",
+    "headline": "街道被高楼夹住，视线被城市拉直。",
+    "paragraphs": [
+      "竖幅让这张城市照片有了向下的重量。近处的楼体、远处的道路和天空，被压进一条狭长的视线里。",
+      "我喜欢城市画面里的秩序感。密度很高，但线条会帮人找到出口。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" },
+      { "label": "版式", "value": "竖幅" }
+    ]
+  },
+  "tags": ["城市", "街道", "竖幅"]
+}

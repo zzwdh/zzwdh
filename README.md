@@ -9,6 +9,7 @@ npm install --cache /private/tmp/npm-cache
 npm run dev
 npm run build
 npm run preview
+npm run validate:content
 npm run budget
 ```
 
@@ -16,19 +17,28 @@ npm run budget
 
 ## 内容维护
 
-主要内容在 `src/data/site.ts`：
+主要内容已经迁到 Astro Content Collections：
 
-- 作品集：`works`，由 `photography` 和 `drone` 合并展示
-- 首页精选：`featuredWorks`，只放第一眼要看的作品
-- 档案馆：`archiveWorks`，生成 `/archive/` 和 `/works/[slug]/` 详情页
-- 个人视频：`videos`，`externalUrl` 可选，没有链接时显示“待补链接”
-- 360 全景：`panoramas`
-- 免费在线全景查看器：`/panorama-viewer/`
-- 姓名、邮箱、微信、社媒链接、简介：`site`
+- 作品：`src/content/works/*.json`，一张照片一份文件。
+- 个人视频：`src/content/videos/*.json`，`externalUrl` 可选。
+- 360 全景：`src/content/panoramas/*.json`，支持预览图和原图分离。
+- 站点配置：`src/content/settings/site.json`，维护姓名、邮箱、微信、社媒、首屏文案等。
 
-新增作品时，先把图片放进 `assets/` 对应目录，再在 `src/data/site.ts` 引入并添加到摄影或航拍数组。没有图片的项目可以保留 `placeholder`，页面会显示占位。
+新增作品时，先把图片放进 `assets/photography/` 或 `assets/drone/`，再复制一份 `src/content/works/` 里的 JSON 改内容。`featured` 控制是否上首页精选，`archive` 控制是否进入档案馆，`storyStatus: "ready"` 才会在详情页显示“查看这张照片的故事”提示。
 
-作品可以通过 `featured` 控制是否出现在首页，通过 `archive` 控制是否进入档案馆。详情页支持 `detail.style`，当前有 `line`、`story`、`technical`、`poetic`、`series` 五种说明样式。
+图片字段已经按对象存储/CDN 设计。现在可以继续用本地素材：
+
+```json
+{ "type": "local", "key": "photography/photo-01" }
+```
+
+以后迁到 Cloudflare R2、阿里云 OSS 或其他 CDN 时，可以改成：
+
+```json
+{ "type": "remote", "url": "https://cdn.example.com/works/photo-01.jpg", "width": 2400, "height": 1600 }
+```
+
+详情页支持 `detail.style`，当前有 `line`、`story`、`technical`、`poetic`、`series` 五种说明样式。新增照片后建议运行 `npm run validate:content`，它会检查 slug、缺图、精选数量、故事状态和全景配置。
 
 ## 素材规范
 
@@ -54,13 +64,14 @@ public/
 - 普通作品图依赖 Astro 生成 `srcset`，避免直接把 6000px 原图发给所有设备。
 - 首页除灯箱和全景外不引入重型前端框架。
 - Pannellum 和它的样式只在用户点击全景按钮时加载。
-- 构建后运行 `npm run budget`，检查首页有效载荷、普通图片、CSS、首页 JS、全景异步 JS，并单独检查全景原图体积。
+- 构建后运行 `npm run budget`，分别检查首页、档案馆、作品详情、CSS、首页 JS、全景异步 JS、普通图片和全景原图。
+
+不要把对象存储密钥写进仓库。全景原图和大作品图后续建议上传到对象存储/CDN，只在内容文件里保留公开访问 URL。
 
 ## 未来扩展方向
 
 - 全景：从单图升级为多点位 scene，增加热点、楼层/路线地图和项目独立分享页。
-- 工具页：`/panorama-viewer/` 可继续增加热点标注、截图导出和多图场景切换。
-- 内容：作品量变大后可迁移到 Astro Content Collections 或轻量 CMS，继续保持页面组件不动、只维护数据。
+- 内容：年份筛选、项目合集页、更细的故事模板，或等编辑后台生态兼容 Astro 6 后再接入轻量 CMS。
 - 媒体：视频外链稳定后，可增加平台图标、精选短片页和结构化 SEO 数据。
 - 部署：自有服务器建议加 CI 构建、资源体积检查、HTTPS 自动续期和定期备份。
 

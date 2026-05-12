@@ -1,0 +1,28 @@
+{
+  "title": "云上山线",
+  "category": "drone",
+  "image": { "type": "local", "key": "drone/drone-04" },
+  "alt": "云海与山脉相接的航拍作品",
+  "description": "云海压低到山腰，山线在蓝色里慢慢展开。",
+  "label": "CLOUD LINE",
+  "layout": "wide",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 20,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "poetic",
+    "eyebrow": "AERIAL CLOUDS",
+    "headline": "云铺在山前，远处只剩下一条线。",
+    "paragraphs": [
+      "这张照片的空间很开。云海把近处和远处隔开，山脉像被推到画面尽头。",
+      "航拍在这里不是为了俯视，而是为了让层次变得更轻。云、山、天各自占了一段距离。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" },
+      { "label": "类型", "value": "航拍" }
+    ]
+  },
+  "tags": ["航拍", "云海", "山线"]
+}

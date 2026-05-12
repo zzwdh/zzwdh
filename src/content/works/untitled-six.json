@@ -1,0 +1,26 @@
+{
+  "title": "相依",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-06" },
+  "alt": "两只白鸽靠在一起的摄影作品",
+  "description": "两只白鸽靠得很近，像把喧闹挡在画面外。",
+  "label": "PAIR",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 5,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "poetic",
+    "eyebrow": "QUIET PAIR",
+    "headline": "靠近一点，画面就软下来。",
+    "paragraphs": [
+      "这张照片的颜色很少，动作也很小。两只白鸽只是靠在一起，却让画面有了很轻的温度。",
+      "我没有想把它拍得多戏剧化。它适合短一点，安静一点，像一个没有被打断的片刻。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2025" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["白鸽", "亲密", "安静"]
+}

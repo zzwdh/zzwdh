@@ -1,5 +1,6 @@
 ---
-import { Picture } from "astro:assets";
+import { getImage } from "astro:assets";
+import ResponsiveImage from "@components/ResponsiveImage.astro";
 import type { WorkItem } from "@data/site";
 
 type Props = {
@@ -21,6 +22,15 @@ const categoryLabels = {
   video: "视频",
   panorama: "全景"
 };
+
+const enhancedItems = await Promise.all(
+  items.map(async (item) => ({
+    item,
+    fullSrc: item.image
+      ? (await getImage({ src: item.image, width: 1920, format: "webp", quality: 82 })).src
+      : item.imageUrl
+  }))
+);
 ---
 
 <section id={id} class:list={["section work-section", sectionClass]}>
@@ -37,8 +47,8 @@ const categoryLabels = {
 
   <div class="gallery-grid" data-gallery={id}>
     {
-      items.map((item) => {
-        const hasImage = Boolean(item.image);
+      enhancedItems.map(({ item, fullSrc }) => {
+        const hasImage = Boolean(item.image || item.imageUrl);
         return (
           <button
             class:list={[
@@ -52,18 +62,22 @@ const categoryLabels = {
             data-placeholder={item.placeholder ?? "待补作品"}
             data-caption={item.title}
             data-description={item.description}
+            data-story-url={item.storyStatus === "ready" ? `/works/${item.slug}/` : undefined}
+            data-story-status={item.storyStatus}
+            data-full-src={fullSrc}
             type="button"
             disabled={!hasImage}
             aria-label={hasImage ? `预览${item.title}` : item.placeholder ?? item.title}
           >
             {
-              item.image && (
-                <Picture
-                  src={item.image}
+              hasImage && (
+                <ResponsiveImage
+                  image={item.image}
+                  imageUrl={item.imageUrl}
                   alt={item.alt}
-                  formats={["avif", "webp"]}
                   widths={[480, 768, 1120, 1440]}
                   width={1440}
+                  height={item.imageHeight}
                   sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
                   quality={70}
                   loading="lazy"

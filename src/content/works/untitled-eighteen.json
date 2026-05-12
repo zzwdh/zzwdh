@@ -1,0 +1,26 @@
+{
+  "title": "雷雨将至",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-18" },
+  "alt": "城市远处雷电与低云的摄影作品",
+  "description": "低云压住城市，远处的闪电把夜色划开。",
+  "label": "STORM",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 15,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "line",
+    "eyebrow": "STORM LIGHT",
+    "headline": "闪电只亮一下，天空却沉了很久。",
+    "paragraphs": [
+      "这张照片的紧张感来自上方的云。它压得很低，城市灯光反而显得更小。",
+      "远处那一道光让画面突然有了时间感。像是在暴雨真正落下之前，天空提前给出的提示。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["雷雨", "城市", "夜色"]
+}

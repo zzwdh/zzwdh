@@ -1,0 +1,30 @@
+{
+  "title": "云海山脊",
+  "category": "drone",
+  "image": { "type": "local", "key": "drone/drone-01" },
+  "alt": "云海山脊航拍作品",
+  "description": "云雾贴着山脊翻过来，绿色山体像从海里露出。",
+  "label": "CLOUD RIDGE",
+  "layout": "wide",
+  "featured": true,
+  "featuredOrder": 8,
+  "archive": true,
+  "archiveOrder": 17,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "technical",
+    "eyebrow": "AERIAL VIEW",
+    "headline": "从空中看，云像水，山像岸。",
+    "paragraphs": [
+      "航拍让山脊的线条变得很清楚。云雾从两侧贴上来，绿色山体在中间露出，像一条被推开的路。",
+      "这张照片更像是在记录地形和天气的关系。高度一变，云的流动感也被看见了。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" },
+      { "label": "类型", "value": "航拍" },
+      { "label": "说明样式", "value": "技术型" }
+    ]
+  },
+  "tags": ["航拍", "云海", "山脊"]
+}

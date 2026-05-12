@@ -1,0 +1,27 @@
+{
+  "title": "火花旋涡",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-12" },
+  "alt": "夜色中火花旋转形成圆形轨迹的摄影作品",
+  "description": "火花在夜里转成旋涡，亮得像短暂的小宇宙。",
+  "label": "SPARK SPIRAL",
+  "featured": true,
+  "featuredOrder": 6,
+  "archive": true,
+  "archiveOrder": 9,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "poetic",
+    "eyebrow": "SPARKS",
+    "headline": "一圈火花，把黑夜点成了旋涡。",
+    "paragraphs": [
+      "这张照片的动感来自一个很简单的动作：旋转。火花被甩出去，又在长曝光里连成了一圈圈轨迹。",
+      "我喜欢它带来的错觉。明明是一瞬间的热，却在照片里变成了一个完整、发亮、正在扩散的形状。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["火花", "长曝光", "夜色"]
+}

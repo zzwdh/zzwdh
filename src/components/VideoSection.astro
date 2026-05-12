@@ -1,6 +1,6 @@
 ---
-import { Picture } from "astro:assets";
 import type { VideoItem } from "@data/site";
+import ResponsiveImage from "@components/ResponsiveImage.astro";
 
 type Props = {
   items: VideoItem[];
@@ -21,16 +21,18 @@ const { items } = Astro.props;
   <div class="video-grid">
     {
       items.map((item) => {
+        const hasImage = Boolean(item.image || item.imageUrl);
         const coverContent = (
           <>
             {
-              item.image && (
-                <Picture
-                  src={item.image}
+              hasImage && (
+                <ResponsiveImage
+                  image={item.image}
+                  imageUrl={item.imageUrl}
                   alt={item.alt}
-                  formats={["avif", "webp"]}
                   widths={[480, 768, 1120]}
                   width={1120}
+                  height={item.imageHeight}
                   sizes="(max-width: 900px) 100vw, 33vw"
                   quality={78}
                   loading="lazy"
@@ -47,7 +49,7 @@ const { items } = Astro.props;
             {
               item.externalUrl ? (
                 <a
-                  class:list={["video-cover", !item.image && "is-missing"]}
+                  class:list={["video-cover", !hasImage && "is-missing"]}
                   href={item.externalUrl}
                   data-art
                   data-label={item.label}
@@ -57,7 +59,7 @@ const { items } = Astro.props;
                 </a>
               ) : (
                 <div
-                  class:list={["video-cover", !item.image && "is-missing"]}
+                  class:list={["video-cover", !hasImage && "is-missing"]}
                   data-art
                   data-label={item.label}
                   data-placeholder={item.placeholder ?? "待放入视频"}

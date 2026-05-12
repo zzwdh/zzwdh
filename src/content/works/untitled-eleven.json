@@ -1,0 +1,28 @@
+{
+  "title": "湖上薄雾",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-11" },
+  "alt": "湖面薄雾与远山船影的摄影作品",
+  "description": "湖面压低了声音，船影和远山都变得很轻。",
+  "label": "MIST LAKE",
+  "layout": "wide",
+  "featured": true,
+  "featuredOrder": 5,
+  "archive": true,
+  "archiveOrder": 8,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "story",
+    "eyebrow": "MIST ON WATER",
+    "headline": "远山很淡，湖面很慢。",
+    "paragraphs": [
+      "这张照片的层次是慢慢浮出来的：先是水面，然后是船，再往后是雾和山。",
+      "我喜欢它没有把风景拍得很响。所有东西都被压低了一点，像清晨还没完全醒来的湖。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["湖面", "薄雾", "远山"]
+}

@@ -1,0 +1,26 @@
+{
+  "title": "飞鸟散开",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-15" },
+  "alt": "飞鸟在云层前散开的摄影作品",
+  "description": "鸟群划过云层，天空一下子有了方向。",
+  "label": "BIRDS",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 12,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "story",
+    "eyebrow": "IN THE SKY",
+    "headline": "云很慢，鸟群很快。",
+    "paragraphs": [
+      "这张照片里没有地面，只有天空和飞鸟。鸟群分散在云层前，像一组短短的音符。",
+      "我喜欢它的留白。画面没有追着鸟群跑，而是让它们从天空里经过，留下一个很轻的方向。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["飞鸟", "天空", "云层"]
+}

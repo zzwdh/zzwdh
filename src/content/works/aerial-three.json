@@ -1,0 +1,27 @@
+{
+  "title": "夜空光鲸",
+  "category": "drone",
+  "image": { "type": "local", "key": "drone/drone-03" },
+  "alt": "夜空中蓝色光点组成鲸鱼形状的作品",
+  "description": "蓝色光点在黑夜里聚成鲸鱼，像一场短暂的梦。",
+  "label": "LIGHT WHALE",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 19,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "technical",
+    "eyebrow": "LIGHT SHOW",
+    "headline": "光点散开，又在夜里游成一条鲸。",
+    "paragraphs": [
+      "这张作品最有趣的是它介于照片和表演之间。单个光点很小，但排列在一起，就变成了可以被识别的生物。",
+      "黑色背景让蓝色更加集中，鲸鱼的轮廓也因此像从夜空里慢慢浮出来。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" },
+      { "label": "类型", "value": "夜间光影" }
+    ]
+  },
+  "tags": ["光影", "夜空", "鲸鱼"]
+}

@@ -1,5 +1,5 @@
 ---
-import { Picture } from "astro:assets";
+import ResponsiveImage from "@components/ResponsiveImage.astro";
 import type { WorkItem } from "@data/site";
 
 type Props = {
@@ -17,15 +17,22 @@ const categoryLabels = {
 <div class="archive-grid" aria-label="作品档案">
   {
     items.map((item) => (
-      <a class="archive-card" href={`/works/${item.slug}/`} aria-label={`查看${item.title}`}>
+      <a
+        class="archive-card"
+        href={`/works/${item.slug}/`}
+        aria-label={`查看${item.title}`}
+        data-archive-card
+        data-category={item.category}
+      >
         {
-          item.image && (
-            <Picture
-              src={item.image}
+          (item.image || item.imageUrl) && (
+            <ResponsiveImage
+              image={item.image}
+              imageUrl={item.imageUrl}
               alt={item.alt}
-              formats={["avif", "webp"]}
               widths={[480, 768, 1120, 1440]}
               width={1440}
+              height={item.imageHeight}
               sizes="(max-width: 560px) 100vw, (max-width: 960px) 50vw, 33vw"
               quality={70}
               loading="lazy"

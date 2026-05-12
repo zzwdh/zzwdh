@@ -1,0 +1,26 @@
+{
+  "title": "光影廊道",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-14" },
+  "alt": "建筑廊道中几何结构和光影交错的摄影作品",
+  "description": "金属结构和阳光交错，走廊像被切成许多片。",
+  "label": "LIGHT CORRIDOR",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 11,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "series",
+    "eyebrow": "GEOMETRY",
+    "headline": "建筑把光切开，影子又把路接回去。",
+    "paragraphs": [
+      "我被这条廊道里的重复结构吸引。弧线、网格、栏杆和地面的阴影都在指向同一个方向。",
+      "这类照片像在拍空间的节奏。人只是经过，真正的主体是光在建筑里留下的秩序。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2026" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["建筑", "几何", "光影"]
+}

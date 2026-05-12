@@ -1,0 +1,27 @@
+{
+  "title": "月影序列",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-04" },
+  "alt": "夜空中连续排列的月影摄影作品",
+  "description": "一串月影沿着黑夜排开，像时间留下的刻度。",
+  "label": "MOON TRAIL",
+  "featured": true,
+  "featuredOrder": 4,
+  "archive": true,
+  "archiveOrder": 4,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "line",
+    "eyebrow": "LUNAR SEQUENCE",
+    "headline": "月亮走过夜空，留下一行安静的标点。",
+    "paragraphs": [
+      "黑色几乎占满了画面，月影却一格一格地亮着。它不像普通照片里的瞬间，更像把一段时间压进了一张图。",
+      "我喜欢它的克制。没有复杂背景，只有一个方向，一条轨迹，和夜色里慢慢变化的光。"
+    ],
+    "meta": [
+      { "label": "年份", "value": "2025" },
+      { "label": "地点", "value": "未标注地点" }
+    ]
+  },
+  "tags": ["月影", "夜空", "序列"]
+}

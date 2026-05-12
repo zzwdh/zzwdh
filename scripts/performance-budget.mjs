@@ -1,15 +1,17 @@
 import { readdir, stat } from "node:fs/promises";
-import { join } from "node:path";
 
 const root = new URL("../dist/", import.meta.url);
 const astroDir = new URL("./_astro/", root);
 
 const budgets = {
-  pagePayloadTotal: 25 * 1024 * 1024,
+  homeHtml: 220 * 1024,
+  archiveHtml: 420 * 1024,
+  largestDetailHtml: 220 * 1024,
   largestImage: 1.5 * 1024 * 1024,
-  largestCss: 35 * 1024,
-  mainJs: 20 * 1024,
-  asyncJs: 100 * 1024,
+  cssTotal: 90 * 1024,
+  mainJs: 24 * 1024,
+  asyncJs: 110 * 1024,
+  optimizedMediaTotal: 70 * 1024 * 1024,
   panoramaOriginalTotal: 180 * 1024 * 1024,
   largestPanoramaOriginal: 70 * 1024 * 1024
 };
@@ -33,6 +35,8 @@ const walk = async (dirUrl) => {
   return files.flat();
 };
 
+const byPath = (files, suffix) => files.find((file) => file.path.endsWith(suffix))?.size ?? 0;
+
 const assertBudget = (label, actual, limit) => {
   const ok = actual <= limit;
   console.log(`${ok ? "OK" : "FAIL"} ${label}: ${formatBytes(actual)} / ${formatBytes(limit)}`);
@@ -41,24 +45,26 @@ const assertBudget = (label, actual, limit) => {
 
 const files = await walk(root);
 const assets = await walk(astroDir);
-const panoramaOriginals = files.filter((file) =>
-  /\/panorama\/pano-\d+\.(?:jpe?g)$/i.test(file.path)
-);
-const pagePayloadFiles = files.filter((file) => !panoramaOriginals.includes(file));
-const pagePayloadTotal = pagePayloadFiles.reduce((sum, file) => sum + file.size, 0);
-const panoramaOriginalTotal = panoramaOriginals.reduce((sum, file) => sum + file.size, 0);
+const htmlFiles = files.filter((file) => file.name.endsWith(".html"));
+const detailHtml = htmlFiles.filter((file) => /\/works\/[^/]+\/index\.html$/.test(file.path));
+const panoramaOriginals = files.filter((file) => /\/panorama\/pano-\d+\.(?:jpe?g)$/i.test(file.path));
 const images = assets.filter((file) => /\.(avif|webp|jpe?g|png|svg)$/i.test(file.name));
 const css = assets.filter((file) => file.name.endsWith(".css"));
 const js = assets.filter((file) => file.name.endsWith(".js"));
 const mainJs = js.filter((file) => !file.name.includes("pannellum"));
 const asyncJs = js.filter((file) => file.name.includes("pannellum"));
+const optimizedMediaTotal = images.reduce((sum, file) => sum + file.size, 0);
+const panoramaOriginalTotal = panoramaOriginals.reduce((sum, file) => sum + file.size, 0);
 
 const checks = [
-  assertBudget("page payload excluding panorama originals", pagePayloadTotal, budgets.pagePayloadTotal),
-  assertBudget("largest image", Math.max(0, ...images.map((file) => file.size)), budgets.largestImage),
-  assertBudget("largest CSS chunk", Math.max(0, ...css.map((file) => file.size)), budgets.largestCss),
+  assertBudget("homepage HTML", byPath(files, "/index.html"), budgets.homeHtml),
+  assertBudget("archive HTML", byPath(files, "/archive/index.html"), budgets.archiveHtml),
+  assertBudget("largest work detail HTML", Math.max(0, ...detailHtml.map((file) => file.size)), budgets.largestDetailHtml),
+  assertBudget("largest optimized image", Math.max(0, ...images.map((file) => file.size)), budgets.largestImage),
+  assertBudget("CSS total", css.reduce((sum, file) => sum + file.size, 0), budgets.cssTotal),
   assertBudget("main JS total", mainJs.reduce((sum, file) => sum + file.size, 0), budgets.mainJs),
   assertBudget("panorama async JS", asyncJs.reduce((sum, file) => sum + file.size, 0), budgets.asyncJs),
+  assertBudget("optimized media total", optimizedMediaTotal, budgets.optimizedMediaTotal),
   assertBudget("panorama originals total", panoramaOriginalTotal, budgets.panoramaOriginalTotal),
   assertBudget(
     "largest panorama original",

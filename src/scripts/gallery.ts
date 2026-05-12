@@ -4,12 +4,37 @@ const lightboxCaption = lightbox?.querySelector<HTMLElement>("figcaption");
 const closeButton = lightbox?.querySelector<HTMLButtonElement>(".lightbox-close");
 const previousButton = lightbox?.querySelector<HTMLButtonElement>(".lightbox-prev");
 const nextButton = lightbox?.querySelector<HTMLButtonElement>(".lightbox-next");
+const storyLink = lightbox?.querySelector<HTMLAnchorElement>("[data-lightbox-story]");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const galleryItems = Array.from(
   document.querySelectorAll<HTMLButtonElement>(".gallery-item:not(.is-missing):not(:disabled)")
 );
 
 let activeIndex = 0;
+let storyTimer: number | undefined;
+let previousFocus: HTMLElement | null = null;
+
+const hideStoryLink = () => {
+  window.clearTimeout(storyTimer);
+  if (!storyLink) return;
+  storyLink.classList.remove("is-visible");
+  storyLink.setAttribute("aria-hidden", "true");
+  storyLink.setAttribute("tabindex", "-1");
+};
+
+const queueStoryLink = (item: HTMLButtonElement) => {
+  hideStoryLink();
+  if (!storyLink || !item.dataset.storyUrl) return;
+
+  storyLink.href = item.dataset.storyUrl;
+  storyTimer = window.setTimeout(() => {
+    if (!lightbox?.classList.contains("is-open")) return;
+    storyLink.classList.add("is-visible");
+    storyLink.setAttribute("aria-hidden", "false");
+    storyLink.removeAttribute("tabindex");
+  }, reduceMotion ? 700 : 2600);
+};
 
 const openLightbox = (item: HTMLButtonElement) => {
   if (!lightbox || !lightboxImage || !lightboxCaption) return;
@@ -17,20 +42,28 @@ const openLightbox = (item: HTMLButtonElement) => {
   const image = item.querySelector<HTMLImageElement>("img");
   if (!image) return;
 
+  const wasOpen = lightbox.classList.contains("is-open");
   activeIndex = galleryItems.indexOf(item);
-  lightboxImage.src = image.currentSrc || image.src;
+  if (!wasOpen) {
+    previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+  }
+  lightboxImage.src = item.dataset.fullSrc || image.currentSrc || image.src;
   lightboxImage.alt = image.alt;
   lightboxCaption.textContent = item.dataset.caption || image.alt;
   lightbox.classList.add("is-open");
   lightbox.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
+  queueStoryLink(item);
+  closeButton?.focus();
 };
 
 const closeLightbox = () => {
   if (!lightbox) return;
+  hideStoryLink();
   lightbox.classList.remove("is-open");
   lightbox.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
+  previousFocus?.focus();
 };
 
 const showAdjacent = (direction: number) => {

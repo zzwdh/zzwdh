@@ -1,0 +1,39 @@
+{
+  "title": "邹羽轩 | 影像作品集",
+  "navTitle": "影像作品集",
+  "name": "邹羽轩",
+  "role": "个人影像作品集",
+  "eyebrow": "PHOTOS / MOTION / 360",
+  "email": "zzwdh1417857813@outlook.com",
+  "wechat": "adad12657",
+  "socials": [
+    {
+      "label": "Bilibili",
+      "value": "space.bilibili.com/441613181",
+      "href": "https://space.bilibili.com/441613181"
+    },
+    {
+      "label": "小红书",
+      "value": "xhslink.com/m/5FaMFmWSc3k",
+      "href": "https://xhslink.com/m/5FaMFmWSc3k"
+    },
+    {
+      "label": "抖音",
+      "value": "52786965973"
+    }
+  ],
+  "heroImage": {
+    "type": "local",
+    "key": "photography/photo-17",
+    "alt": "个人影像作品代表照片"
+  },
+  "heroAlt": "个人影像作品代表照片",
+  "heroCopy": "一些照片。几张全景。还有我看世界时，按下快门的那一秒。",
+  "aboutTitle": "拍得少一点，记得久一点。",
+  "aboutCopy": "我把光、颜色和偶然经过的人，收进画面里。",
+  "wechatQr": {
+    "type": "local",
+    "key": "profile/wechat-qr",
+    "alt": "微信二维码"
+  }
+}

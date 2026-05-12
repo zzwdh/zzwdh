@@ -23,9 +23,7 @@ if (!motionQuery.matches) {
     ".archive-card",
     ".work-detail-header",
     ".work-detail-image",
-    ".work-detail-copy",
-    ".viewer-control",
-    ".viewer-stage"
+    ".work-detail-copy"
   ];
 
   const revealTargets = Array.from(document.querySelectorAll<HTMLElement>(revealSelectors.join(",")));
