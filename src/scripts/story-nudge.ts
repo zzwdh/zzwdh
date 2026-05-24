@@ -3,7 +3,9 @@ export {};
 const nudge = document.querySelector<HTMLElement>("[data-story-nudge]");
 const panel = document.querySelector<HTMLElement>("[data-story-panel]");
 const openButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-story-open]"));
-const closeButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-story-close], [data-story-dismiss]"));
+const closeButtons = Array.from(
+  document.querySelectorAll<HTMLButtonElement>("[data-story-close], [data-story-dismiss]")
+);
 const backdrop = document.querySelector<HTMLElement>(".story-backdrop");
 const firstCloseButton = document.querySelector<HTMLButtonElement>("[data-story-panel] [data-story-close]");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

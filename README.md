@@ -9,11 +9,15 @@ npm install --cache /private/tmp/npm-cache
 npm run dev
 npm run build
 npm run preview
+npm run verify
+npm run validate:architecture
 npm run validate:content
 npm run budget
 ```
 
 如果本机 npm 用户缓存有权限问题，继续使用 `--cache /private/tmp/npm-cache` 即可。
+
+工程协作规则见 `docs/engineering-standards.md`。提交前以 `npm run verify` 为准。
 
 ## 内容维护
 

@@ -92,9 +92,10 @@ export type SiteSettings = {
   wechatQrUrl?: string;
 };
 
-const byOptionalOrder = <T extends { featuredOrder?: number; archiveOrder?: number; title: string }>(
-  key: "featuredOrder" | "archiveOrder"
-) => (a: T, b: T) => (a[key] ?? 9999) - (b[key] ?? 9999) || a.title.localeCompare(b.title, "zh-CN");
+const byOptionalOrder =
+  <T extends { featuredOrder?: number; archiveOrder?: number; title: string }>(key: "featuredOrder" | "archiveOrder") =>
+  (a: T, b: T) =>
+    (a[key] ?? 9999) - (b[key] ?? 9999) || a.title.localeCompare(b.title, "zh-CN");
 
 const mapImage = (asset: MediaAsset | undefined, fallbackAlt: string) => {
   const media = resolveMedia(asset);
@@ -158,7 +159,10 @@ export const getWorks = async (): Promise<WorkItem[]> => {
 };
 
 export const getFeaturedWorks = async () =>
-  (await getWorks()).filter((item) => item.featured).sort(byOptionalOrder("featuredOrder")).slice(0, 9);
+  (await getWorks())
+    .filter((item) => item.featured)
+    .sort(byOptionalOrder("featuredOrder"))
+    .slice(0, 9);
 
 export const getArchiveWorks = async () =>
   (await getWorks()).filter((item) => item.archive && (item.image || item.imageUrl));

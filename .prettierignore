@@ -1,0 +1,8 @@
+.astro/
+dist/
+node_modules/
+assets/
+public/panorama/
+public/vendor/
+package-lock.json
+src/content/**/*.json

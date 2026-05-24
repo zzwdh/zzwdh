@@ -1,11 +1,7 @@
 import { chmod, readdir, rm } from "node:fs/promises";
 
 const panoramaDir = new URL("../dist/panorama/", import.meta.url);
-const keepPatterns = [
-  /^pano-\d+\.(?:jpe?g)$/i,
-  /^pano-\d+-web\.jpg$/i,
-  /^pano-\d+-poster\.jpg$/i
-];
+const keepPatterns = [/^pano-\d+\.(?:jpe?g)$/i, /^pano-\d+-web\.jpg$/i, /^pano-\d+-poster\.jpg$/i];
 
 const shouldKeep = (name) => keepPatterns.some((pattern) => pattern.test(name));
 

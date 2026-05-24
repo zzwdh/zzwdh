@@ -5,3 +5,6 @@ dist/
 npm-debug.log*
 README 2.md
 assets/panorama/
+.env
+.env.*
+!.env.example

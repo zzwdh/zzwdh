@@ -11,16 +11,29 @@
     "postbuild": "node scripts/prune-dist.mjs",
     "prepreview": "node scripts/copy-vendor.mjs",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview --host 127.0.0.1",
+    "lint": "eslint .",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro sync && tsc --noEmit",
+    "validate:architecture": "node scripts/validate-architecture.mjs",
     "validate:content": "node scripts/validate-content.mjs",
     "clean": "node scripts/clean.mjs",
-    "budget": "node scripts/performance-budget.mjs"
+    "budget": "node scripts/performance-budget.mjs",
+    "verify": "npm run lint && npm run format:check && npm run check && npm run validate:architecture && npm run validate:content && npm run build && npm run budget"
   },
   "dependencies": {
     "astro": "^6.3.0",
     "pannellum": "^2.5.7"
   },
   "devDependencies": {
-    "typescript": "^6.0.3"
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.3.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^1.7.0",
+    "globals": "^17.6.0",
+    "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.3"
   }
 }

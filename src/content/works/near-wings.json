@@ -1,0 +1,28 @@
+{
+  "title": "近空白羽",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-22" },
+  "alt": "飞鸟贴近镜头掠过天空的摄影作品",
+  "description": "几只飞鸟贴近镜头掠过，翅膀把午后的光托得很亮。",
+  "label": "NEAR WINGS",
+  "layout": "wide",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 23,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "line",
+    "eyebrow": "CLOSE FLIGHT",
+    "headline": "翅膀靠得很近，天空退得很远。",
+    "paragraphs": [
+      "这张照片最有意思的是距离。飞鸟从镜头前方掠过，翅膀被光照亮，背景里的建筑和天空都慢慢虚掉。",
+      "我没有把它当成一张清晰的鸟类照片，而更像一张关于速度和光的照片。它们只经过一瞬，画面却被那一瞬填满了。"
+    ],
+    "meta": [
+      { "label": "时间", "value": "2026年2月10日 12:35" },
+      { "label": "地点", "value": "西湖游船" },
+      { "label": "类型", "value": "摄影" }
+    ]
+  },
+  "tags": ["飞鸟", "翅膀", "西湖", "速度"]
+}

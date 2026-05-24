@@ -1,0 +1,147 @@
+---
+import { getImage } from "astro:assets";
+import ResponsiveImage from "@components/ResponsiveImage.astro";
+import type { WorkItem } from "@data/site";
+
+type Props = {
+  id: string;
+  kicker: string;
+  title: string;
+  copy: string;
+  items: WorkItem[];
+  actionHref?: string;
+  actionLabel?: string;
+};
+
+const { id, kicker, title, copy, items, actionHref, actionLabel } = Astro.props;
+const chunkSize = 3;
+const categoryLabels = {
+  photography: "照片",
+  drone: "航拍",
+  video: "视频",
+  panorama: "全景"
+};
+
+const enhancedItems = await Promise.all(
+  items.map(async (item) => ({
+    item,
+    fullSrc: item.image
+      ? (await getImage({ src: item.image, width: 1920, format: "webp", quality: 82 })).src
+      : item.imageUrl
+  }))
+);
+
+const slides = Array.from({ length: Math.ceil(enhancedItems.length / chunkSize) }, (_, index) =>
+  enhancedItems.slice(index * chunkSize, index * chunkSize + chunkSize)
+);
+---
+
+<section id={id} class="section featured-work-section featured-carousel-section">
+  <div class="section-heading">
+    <div>
+      <p class="section-kicker">{kicker}</p>
+      <h2>{title}</h2>
+    </div>
+    <div class="section-heading-copy">
+      <p>{copy}</p>
+      {
+        actionHref && actionLabel && (
+          <a class="section-action" href={actionHref}>
+            {actionLabel}
+          </a>
+        )
+      }
+    </div>
+  </div>
+
+  <div
+    class="featured-carousel"
+    data-featured-carousel
+    data-interval="5500"
+    aria-roledescription="carousel"
+    aria-label="首页精选作品轮换"
+  >
+    <div class="featured-carousel-topbar">
+      <p class="featured-carousel-count" data-featured-status aria-live="polite">第 1 组 / 共 {slides.length} 组</p>
+      <div class="featured-carousel-controls" aria-label="切换精选作品">
+        <button class="featured-carousel-button" type="button" data-featured-prev aria-label="上一组作品">←</button>
+        <button class="featured-carousel-button" type="button" data-featured-next aria-label="下一组作品">→</button>
+      </div>
+    </div>
+
+    <div class="featured-carousel-viewport">
+      {
+        slides.map((slide, slideIndex) => (
+          <div
+            class:list={["featured-carousel-slide", slideIndex === 0 && "is-active"]}
+            data-featured-slide
+            aria-hidden={slideIndex === 0 ? "false" : "true"}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`第 ${slideIndex + 1} 组精选作品`}
+            inert={slideIndex === 0 ? undefined : true}
+          >
+            {slide.map(({ item, fullSrc }, itemIndex) => {
+              const hasImage = Boolean(item.image || item.imageUrl);
+              return (
+                <button
+                  class:list={[
+                    "gallery-item",
+                    "featured-carousel-card",
+                    itemIndex === 0 && "featured-carousel-card-large",
+                    itemIndex > 0 && "featured-carousel-card-secondary",
+                    !hasImage && "is-missing"
+                  ]}
+                  data-art
+                  data-label={item.label}
+                  data-placeholder={item.placeholder ?? "待补作品"}
+                  data-caption={item.title}
+                  data-description={item.description}
+                  data-story-url={item.storyStatus === "ready" ? `/works/${item.slug}/` : undefined}
+                  data-story-status={item.storyStatus}
+                  data-full-src={fullSrc}
+                  type="button"
+                  disabled={!hasImage}
+                  aria-label={hasImage ? `预览${item.title}` : (item.placeholder ?? item.title)}
+                >
+                  {hasImage && (
+                    <ResponsiveImage
+                      image={item.image}
+                      imageUrl={item.imageUrl}
+                      alt={item.alt}
+                      widths={[480, 768, 1120, 1440]}
+                      width={1440}
+                      height={item.imageHeight}
+                      sizes={itemIndex === 0 ? "(max-width: 760px) 100vw, 58vw" : "(max-width: 760px) 100vw, 28vw"}
+                      quality={72}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
+                  <span class="gallery-title">{item.title}</span>
+                  <span class="gallery-category">{categoryLabels[item.category]}</span>
+                </button>
+              );
+            })}
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="featured-carousel-dots" role="tablist" aria-label="精选作品分组">
+      {
+        slides.map((_, index) => (
+          <button
+            class="featured-carousel-dot"
+            type="button"
+            data-featured-dot={index}
+            aria-current={index === 0 ? "true" : "false"}
+            aria-label={`查看第 ${index + 1} 组作品`}
+          >
+            <span />
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</section>

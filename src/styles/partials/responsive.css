@@ -1,0 +1,235 @@
+@media (max-width: 900px) {
+  .site-header {
+    height: auto;
+    min-height: 68px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 14px;
+    padding-bottom: 12px;
+  }
+
+  .nav-links {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .hero {
+    min-height: 94svh;
+    padding-top: 132px;
+  }
+
+  .about-layout,
+  .section-heading,
+  .contact-inner,
+  .panorama-showcase,
+  .work-detail-copy {
+    grid-template-columns: 1fr;
+  }
+
+  .archive-tools {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .portrait-card {
+    min-height: 360px;
+  }
+
+  .metrics,
+  .video-grid,
+  .archive-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-carousel {
+    width: calc(100% - 40px);
+  }
+
+  .featured-carousel-slide {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(360px, 42svh) repeat(2, minmax(230px, 28svh));
+  }
+
+  .featured-carousel-card-large {
+    grid-row: span 1;
+  }
+
+  .contact-inner > *:not(.qr-card),
+  .qr-card {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .panorama-stage,
+  .panorama-preview,
+  .panorama-viewer {
+    min-height: 340px;
+  }
+
+  .archive-card {
+    min-height: 420px;
+  }
+
+  .work-detail-nav {
+    flex-direction: column;
+  }
+
+  .story-panel {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    width: auto;
+    max-height: 76svh;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero h1 {
+    font-size: clamp(54px, 14vw, 92px);
+  }
+
+  .hero-role {
+    font-size: clamp(20px, 5.8vw, 30px);
+  }
+
+  .hero-meta {
+    left: clamp(22px, 6vw, 48px);
+    right: auto;
+    bottom: 84px;
+    grid-auto-flow: column;
+    gap: 12px;
+    text-align: left;
+  }
+
+  .contact-section {
+    padding-top: 72px;
+    padding-bottom: 86px;
+  }
+}
+
+@media (max-width: 560px) {
+  .nav-links {
+    gap: 18px;
+    font-size: 12px;
+  }
+
+  .hero {
+    min-height: 92svh;
+    padding-bottom: 72px;
+  }
+
+  .hero h1 {
+    font-size: clamp(52px, 18vw, 74px);
+  }
+
+  .button,
+  .contact-chip,
+  .social-links a,
+  .social-static {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .featured-carousel {
+    width: calc(100% - 32px);
+  }
+
+  .featured-carousel-topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .featured-carousel-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .featured-carousel-slide {
+    grid-template-rows: repeat(3, minmax(260px, 36svh));
+  }
+
+  .metrics div {
+    min-height: 110px;
+  }
+
+  .panorama-stage,
+  .panorama-preview,
+  .panorama-viewer {
+    min-height: 260px;
+  }
+
+  .panorama-choice-list {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .panorama-launch {
+    min-height: 40px;
+    padding: 0 13px;
+    font-size: 12px;
+  }
+
+  .panorama-status {
+    left: 14px;
+    right: 14px;
+    bottom: 74px;
+  }
+
+  .archive-main,
+  .work-detail-page {
+    padding-top: 126px;
+  }
+
+  .archive-card {
+    min-height: 340px;
+  }
+
+  .lightbox-nav {
+    display: none;
+  }
+
+  .story-nudge {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .story-nudge-main {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .lightbox-story {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .featured-carousel-slide,
+  .featured-carousel-card,
+  .featured-carousel-slide.is-active .featured-carousel-card {
+    animation: none;
+    transform: none;
+  }
+
+  .featured-carousel-card,
+  .featured-carousel-slide.is-active .featured-carousel-card {
+    opacity: 1;
+  }
+}

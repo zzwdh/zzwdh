@@ -28,12 +28,15 @@ const queueStoryLink = (item: HTMLButtonElement) => {
   if (!storyLink || !item.dataset.storyUrl) return;
 
   storyLink.href = item.dataset.storyUrl;
-  storyTimer = window.setTimeout(() => {
-    if (!lightbox?.classList.contains("is-open")) return;
-    storyLink.classList.add("is-visible");
-    storyLink.setAttribute("aria-hidden", "false");
-    storyLink.removeAttribute("tabindex");
-  }, reduceMotion ? 700 : 2600);
+  storyTimer = window.setTimeout(
+    () => {
+      if (!lightbox?.classList.contains("is-open")) return;
+      storyLink.classList.add("is-visible");
+      storyLink.setAttribute("aria-hidden", "false");
+      storyLink.removeAttribute("tabindex");
+    },
+    reduceMotion ? 700 : 2600
+  );
 };
 
 const openLightbox = (item: HTMLButtonElement) => {

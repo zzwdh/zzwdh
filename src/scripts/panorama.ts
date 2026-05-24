@@ -1,6 +1,8 @@
+import type * as Pannellum from "pannellum";
+
 declare global {
   interface Window {
-    pannellum?: typeof import("pannellum");
+    pannellum?: typeof Pannellum;
   }
 }
 

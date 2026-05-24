@@ -1,0 +1,28 @@
+{
+  "title": "楼前白羽",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-23" },
+  "alt": "飞鸟在建筑前掠过的摄影作品",
+  "description": "白鸽在楼前失焦又靠近，城市背景退成柔软的色块。",
+  "label": "WINGS BEFORE BUILDING",
+  "layout": "wide",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 24,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "story",
+    "eyebrow": "URBAN WINGS",
+    "headline": "楼在后面站着，鸟从前面飞过。",
+    "paragraphs": [
+      "飞鸟和建筑在这张照片里没有抢同一个焦点。鸟是近处的、轻的、正在变化的；楼是远处的、稳的、被虚化的。",
+      "我喜欢它的反差。城市通常很硬，但只要一群鸟从前面经过，画面就会突然变软。"
+    ],
+    "meta": [
+      { "label": "时间", "value": "2026年2月10日 12:35" },
+      { "label": "地点", "value": "西湖游船" },
+      { "label": "类型", "value": "摄影" }
+    ]
+  },
+  "tags": ["飞鸟", "城市", "西湖", "虚焦"]
+}

@@ -1,0 +1,28 @@
+{
+  "title": "白羽穿枝",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-21" },
+  "alt": "白色飞鸟穿过树枝与蓝天的摄影作品",
+  "description": "枝条被虚化成前景，白色鸟群从蓝天和树影里散开。",
+  "label": "WHITE WINGS",
+  "layout": "wide",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 22,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "poetic",
+    "eyebrow": "BIRDS IN BLUE",
+    "headline": "白色翅膀从枝条之间穿过去。",
+    "paragraphs": [
+      "这张照片里，前景的枝条几乎抢走了一半画面。飞鸟在枝条后面散开，反而让天空有了一种被偷看见的感觉。",
+      "我喜欢这种不完全清楚的画面。不是每一只鸟都要被拍清楚，重要的是它们一起掠过时，那一下很轻的速度。"
+    ],
+    "meta": [
+      { "label": "时间", "value": "2026年2月10日 12:35" },
+      { "label": "地点", "value": "西湖游船" },
+      { "label": "类型", "value": "摄影" }
+    ]
+  },
+  "tags": ["飞鸟", "西湖", "蓝天", "枝影"]
+}

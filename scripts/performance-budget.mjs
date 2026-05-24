@@ -59,11 +59,27 @@ const panoramaOriginalTotal = panoramaOriginals.reduce((sum, file) => sum + file
 const checks = [
   assertBudget("homepage HTML", byPath(files, "/index.html"), budgets.homeHtml),
   assertBudget("archive HTML", byPath(files, "/archive/index.html"), budgets.archiveHtml),
-  assertBudget("largest work detail HTML", Math.max(0, ...detailHtml.map((file) => file.size)), budgets.largestDetailHtml),
+  assertBudget(
+    "largest work detail HTML",
+    Math.max(0, ...detailHtml.map((file) => file.size)),
+    budgets.largestDetailHtml
+  ),
   assertBudget("largest optimized image", Math.max(0, ...images.map((file) => file.size)), budgets.largestImage),
-  assertBudget("CSS total", css.reduce((sum, file) => sum + file.size, 0), budgets.cssTotal),
-  assertBudget("main JS total", mainJs.reduce((sum, file) => sum + file.size, 0), budgets.mainJs),
-  assertBudget("panorama async JS", asyncJs.reduce((sum, file) => sum + file.size, 0), budgets.asyncJs),
+  assertBudget(
+    "CSS total",
+    css.reduce((sum, file) => sum + file.size, 0),
+    budgets.cssTotal
+  ),
+  assertBudget(
+    "main JS total",
+    mainJs.reduce((sum, file) => sum + file.size, 0),
+    budgets.mainJs
+  ),
+  assertBudget(
+    "panorama async JS",
+    asyncJs.reduce((sum, file) => sum + file.size, 0),
+    budgets.asyncJs
+  ),
   assertBudget("optimized media total", optimizedMediaTotal, budgets.optimizedMediaTotal),
   assertBudget("panorama originals total", panoramaOriginalTotal, budgets.panoramaOriginalTotal),
   assertBudget(

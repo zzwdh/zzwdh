@@ -1,0 +1,28 @@
+{
+  "title": "窗中西湖",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-24" },
+  "alt": "从窗框中望向西湖水面的摄影作品",
+  "description": "木色窗框把湖面裁成几块，远处的人影像停在玻璃里。",
+  "label": "LAKE WINDOW",
+  "layout": "wide",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 25,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "series",
+    "eyebrow": "FRAMED LAKE",
+    "headline": "窗框把西湖裁小，湖面反而更远。",
+    "paragraphs": [
+      "这张照片像一张被空间重新装裱过的湖景。窗框、玻璃、木纹和远处的水面叠在一起，风景没有直接出现，而是被隔着一层看见。",
+      "我喜欢这种间接的观看。人在窗内，湖在窗外，画面中间隔着玻璃，也隔着一点安静的距离。"
+    ],
+    "meta": [
+      { "label": "时间", "value": "2026年2月10日 12:26" },
+      { "label": "地点", "value": "西湖游船" },
+      { "label": "类型", "value": "摄影" }
+    ]
+  },
+  "tags": ["西湖", "窗框", "湖面", "空间"]
+}

@@ -1,0 +1,29 @@
+{
+  "title": "银剑落光",
+  "category": "photography",
+  "image": { "type": "local", "key": "photography/photo-20" },
+  "alt": "舞台上演员低头握剑的剧照",
+  "description": "黑场里只落下一束光，银色剑身把角色的重量托出来。",
+  "label": "STAGE BLADE",
+  "layout": "tall",
+  "featured": false,
+  "archive": true,
+  "archiveOrder": 21,
+  "storyStatus": "ready",
+  "detail": {
+    "style": "line",
+    "eyebrow": "HAMLET STILL",
+    "headline": "剑举起来的时候，舞台忽然安静了。",
+    "paragraphs": [
+      "这张剧照来自莎士比亚戏剧社10周年演出《哈姆雷特》。画面里没有多余背景，黑色把舞台收干净，只留下手、剑和落下来的强光。",
+      "我喜欢这张的紧绷感。人物低下头，剑却向上，两个方向在同一束光里相遇，像一句没有说出口的台词。"
+    ],
+    "meta": [
+      { "label": "时间", "value": "2025年12月14日" },
+      { "label": "地点", "value": "浙江工商大学剧院" },
+      { "label": "事件", "value": "莎士比亚戏剧社10周年演出《哈姆雷特》剧照" },
+      { "label": "类型", "value": "舞台摄影" }
+    ]
+  },
+  "tags": ["舞台", "哈姆雷特", "剧照", "剑"]
+}

@@ -1,15 +1,40 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
-const mediaAsset = z.object({
-  type: z.enum(["local", "public", "remote"]).default("local"),
-  key: z.string().optional(),
-  url: z.string().optional(),
-  cdnUrl: z.string().optional(),
+const mediaMeta = {
   width: z.number().int().positive().optional(),
   height: z.number().int().positive().optional(),
   alt: z.string().optional()
-});
+};
+
+const localMediaAsset = z
+  .object({
+    type: z.literal("local"),
+    key: z.string().min(1),
+    ...mediaMeta
+  })
+  .strict();
+
+const publicMediaAsset = z
+  .object({
+    type: z.literal("public"),
+    url: z.string().min(1),
+    ...mediaMeta
+  })
+  .strict();
+
+const remoteMediaAsset = z
+  .object({
+    type: z.literal("remote"),
+    url: z.string().url(),
+    cdnUrl: z.string().url().optional(),
+    width: z.number().int().positive(),
+    height: z.number().int().positive(),
+    alt: z.string().optional()
+  })
+  .strict();
+
+const mediaAsset = z.discriminatedUnion("type", [localMediaAsset, publicMediaAsset, remoteMediaAsset]);
 
 const detailMeta = z.object({
   label: z.string(),
@@ -51,7 +76,7 @@ const videos = defineCollection({
     description: z.string(),
     label: z.string(),
     placeholder: z.string().optional(),
-    externalUrl: z.string().optional(),
+    externalUrl: z.string().url().optional(),
     order: z.number().int().positive().optional()
   })
 });

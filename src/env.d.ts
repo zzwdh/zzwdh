@@ -1,7 +1,9 @@
 /// <reference types="astro/client" />
 
 declare module "*.JPG" {
-  const metadata: import("astro").ImageMetadata;
+  import type { ImageMetadata } from "astro";
+
+  const metadata: ImageMetadata;
   export default metadata;
 }
 
