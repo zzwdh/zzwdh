@@ -1,0 +1,482 @@
+media:
+  - name: uploads
+    label: Uploads
+    input: public/uploads
+    output: /uploads
+    extensions: [jpg, jpeg, png, webp, avif]
+    categories: [image]
+    rename: safe
+  - name: public-assets
+    label: Public assets
+    input: public
+    output: /
+    extensions: [jpg, jpeg, png, webp, avif]
+    categories: [image]
+    rename: false
+
+components:
+  mediaAsset:
+    type: block
+    label: 媒体资源
+    blockKey: type
+    blocks:
+      - name: local
+        label: Local asset key
+        fields:
+          - name: key
+            label: 本地图片 key
+            type: string
+            required: true
+            description: 对应 src/data/media.ts 中的 key，例如 photography/photo-17。
+          - name: width
+            label: 宽度
+            type: number
+            options:
+              min: 1
+          - name: height
+            label: 高度
+            type: number
+            options:
+              min: 1
+          - name: alt
+            label: 图片说明
+            type: string
+      - name: public
+        label: Uploaded public image
+        fields:
+          - name: url
+            label: 图片
+            type: image
+            required: true
+            options:
+              media: uploads
+              path: public/uploads
+              extensions: [jpg, jpeg, png, webp, avif]
+              rename: safe
+          - name: width
+            label: 宽度
+            type: number
+            options:
+              min: 1
+          - name: height
+            label: 高度
+            type: number
+            options:
+              min: 1
+          - name: alt
+            label: 图片说明
+            type: string
+      - name: remote
+        label: Remote CDN image
+        fields:
+          - name: url
+            label: 原始 URL
+            type: string
+            required: true
+          - name: cdnUrl
+            label: CDN URL
+            type: string
+          - name: width
+            label: 宽度
+            type: number
+            required: true
+            options:
+              min: 1
+          - name: height
+            label: 高度
+            type: number
+            required: true
+            options:
+              min: 1
+          - name: alt
+            label: 图片说明
+            type: string
+  publicMediaAsset:
+    type: block
+    label: Public 媒体资源
+    blockKey: type
+    blocks:
+      - name: public
+        label: Public file
+        fields:
+          - name: url
+            label: 文件
+            type: image
+            required: true
+            options:
+              media: public-assets
+              path: public/panorama
+              extensions: [jpg, jpeg, png, webp, avif]
+              rename: false
+          - name: width
+            label: 宽度
+            type: number
+            options:
+              min: 1
+          - name: height
+            label: 高度
+            type: number
+            options:
+              min: 1
+          - name: alt
+            label: 图片说明
+            type: string
+      - name: remote
+        label: Remote CDN file
+        fields:
+          - name: url
+            label: 原始 URL
+            type: string
+            required: true
+          - name: cdnUrl
+            label: CDN URL
+            type: string
+          - name: width
+            label: 宽度
+            type: number
+            required: true
+            options:
+              min: 1
+          - name: height
+            label: 高度
+            type: number
+            required: true
+            options:
+              min: 1
+          - name: alt
+            label: 图片说明
+            type: string
+  detailMeta:
+    type: object
+    label: 详情元信息
+    fields:
+      - name: label
+        label: 标签
+        type: string
+        required: true
+      - name: value
+        label: 内容
+        type: string
+        required: true
+  socialLink:
+    type: object
+    label: 社媒链接
+    fields:
+      - name: label
+        label: 平台
+        type: string
+        required: true
+      - name: value
+        label: 展示内容
+        type: string
+        required: true
+      - name: href
+        label: 链接
+        type: string
+
+content:
+  - name: works
+    label: 作品
+    type: collection
+    path: src/content/works
+    format: json
+    filename:
+      template: "{primary}.json"
+      field: create
+    view:
+      primary: title
+      fields: [title, category, featured, archive, storyStatus, featuredOrder, archiveOrder]
+      sort: [archiveOrder, featuredOrder, title]
+      search: [title, description, label, tags]
+      default:
+        sort: archiveOrder
+        order: asc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: category
+        label: 分类
+        type: select
+        required: true
+        options:
+          values:
+            - name: photography
+              label: 摄影
+            - name: drone
+              label: 航拍
+      - name: image
+        label: 图片
+        component: mediaAsset
+      - name: alt
+        label: 图片替代文本
+        type: string
+        required: true
+      - name: description
+        label: 简介
+        type: text
+        required: true
+      - name: label
+        label: 英文标签
+        type: string
+        required: true
+      - name: layout
+        label: 版式
+        type: select
+        options:
+          values:
+            - name: wide
+              label: 宽图
+            - name: tall
+              label: 竖图
+      - name: featured
+        label: 首页精选
+        type: boolean
+      - name: featuredOrder
+        label: 首页排序
+        type: number
+        options:
+          min: 1
+      - name: archive
+        label: 进入档案馆
+        type: boolean
+      - name: archiveOrder
+        label: 档案馆排序
+        type: number
+        options:
+          min: 1
+      - name: storyStatus
+        label: 故事状态
+        type: select
+        required: true
+        options:
+          values:
+            - name: draft
+              label: 草稿
+            - name: ready
+              label: 显示
+            - name: hidden
+              label: 隐藏
+      - name: detail
+        label: 详情内容
+        type: object
+        required: true
+        fields:
+          - name: style
+            label: 详情样式
+            type: select
+            required: true
+            options:
+              values:
+                - name: line
+                  label: 线索
+                - name: story
+                  label: 故事
+                - name: technical
+                  label: 技术
+                - name: poetic
+                  label: 诗性
+                - name: series
+                  label: 系列
+          - name: eyebrow
+            label: 小标题
+            type: string
+          - name: headline
+            label: 主句
+            type: string
+          - name: paragraphs
+            label: 段落
+            type: text
+            list: true
+          - name: meta
+            label: 元信息
+            component: detailMeta
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{label}: {value}"
+      - name: tags
+        label: 标签
+        type: string
+        list: true
+
+  - name: videos
+    label: 视频
+    type: collection
+    path: src/content/videos
+    format: json
+    filename:
+      template: "{primary}.json"
+      field: create
+    view:
+      primary: title
+      fields: [title, label, order, externalUrl]
+      sort: [order, title]
+      search: [title, description, label]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: image
+        label: 封面
+        component: mediaAsset
+      - name: alt
+        label: 封面替代文本
+        type: string
+        required: true
+      - name: description
+        label: 简介
+        type: text
+        required: true
+      - name: label
+        label: 标签文案
+        type: string
+        required: true
+      - name: placeholder
+        label: 占位文案
+        type: string
+      - name: externalUrl
+        label: 外链
+        type: string
+      - name: order
+        label: 排序
+        type: number
+        options:
+          min: 1
+
+  - name: panoramas
+    label: 全景
+    type: collection
+    path: src/content/panoramas
+    format: json
+    filename:
+      template: "{primary}.json"
+      field: create
+    view:
+      primary: title
+      fields: [title, order, initialYaw, initialPitch]
+      sort: [order, title]
+      search: [title, description]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: panorama
+        label: 全景原图
+        component: publicMediaAsset
+        required: true
+      - name: preview
+        label: 预览图
+        component: publicMediaAsset
+        required: true
+      - name: alt
+        label: 替代文本
+        type: string
+        required: true
+      - name: description
+        label: 简介
+        type: text
+        required: true
+      - name: initialYaw
+        label: 初始水平视角
+        type: number
+      - name: initialPitch
+        label: 初始垂直视角
+        type: number
+      - name: order
+        label: 排序
+        type: number
+        options:
+          min: 1
+
+  - name: site
+    label: 站点设置
+    type: file
+    path: src/content/settings/site.json
+    format: json
+    fields:
+      - name: title
+        label: 网站标题
+        type: string
+        required: true
+      - name: navTitle
+        label: 导航标题
+        type: string
+        required: true
+      - name: name
+        label: 姓名
+        type: string
+        required: true
+      - name: role
+        label: 角色说明
+        type: string
+        required: true
+      - name: eyebrow
+        label: 首屏标签
+        type: string
+        required: true
+      - name: email
+        label: 邮箱
+        type: string
+        required: true
+      - name: wechat
+        label: 微信
+        type: string
+        required: true
+      - name: icpNumber
+        label: ICP 备案号
+        type: string
+      - name: icpUrl
+        label: ICP 链接
+        type: string
+      - name: socials
+        label: 社媒链接
+        component: socialLink
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label}: {value}"
+      - name: heroImage
+        label: 首屏图片
+        component: mediaAsset
+        required: true
+      - name: heroAlt
+        label: 首屏图片替代文本
+        type: string
+        required: true
+      - name: heroCopy
+        label: 首屏文案
+        type: text
+        required: true
+      - name: aboutTitle
+        label: 简介标题
+        type: string
+        required: true
+      - name: aboutCopy
+        label: 简介正文
+        type: text
+        required: true
+      - name: wechatQr
+        label: 微信二维码
+        component: mediaAsset
+        required: true
+
+settings:
+  content:
+    merge: true
+  commit:
+    identity: app
+    templates:
+      create: "content(create): {path}"
+      update: "content(update): {path}"
+      delete: "content(delete): {path}"
+      rename: "content(rename): {oldPath} -> {newPath}"

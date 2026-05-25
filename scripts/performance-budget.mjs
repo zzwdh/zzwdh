@@ -12,6 +12,8 @@ const budgets = {
   mainJs: 24 * 1024,
   asyncJs: 110 * 1024,
   optimizedMediaTotal: 70 * 1024 * 1024,
+  uploadedMediaTotal: 30 * 1024 * 1024,
+  largestUploadedMedia: 3 * 1024 * 1024,
   panoramaOriginalTotal: 180 * 1024 * 1024,
   largestPanoramaOriginal: 70 * 1024 * 1024
 };
@@ -48,12 +50,14 @@ const assets = await walk(astroDir);
 const htmlFiles = files.filter((file) => file.name.endsWith(".html"));
 const detailHtml = htmlFiles.filter((file) => /\/works\/[^/]+\/index\.html$/.test(file.path));
 const panoramaOriginals = files.filter((file) => /\/panorama\/pano-\d+\.(?:jpe?g)$/i.test(file.path));
+const uploadedMedia = files.filter((file) => /\/uploads\/.+\.(?:avif|webp|jpe?g|png|svg)$/i.test(file.path));
 const images = assets.filter((file) => /\.(avif|webp|jpe?g|png|svg)$/i.test(file.name));
 const css = assets.filter((file) => file.name.endsWith(".css"));
 const js = assets.filter((file) => file.name.endsWith(".js"));
 const mainJs = js.filter((file) => !file.name.includes("pannellum"));
 const asyncJs = js.filter((file) => file.name.includes("pannellum"));
 const optimizedMediaTotal = images.reduce((sum, file) => sum + file.size, 0);
+const uploadedMediaTotal = uploadedMedia.reduce((sum, file) => sum + file.size, 0);
 const panoramaOriginalTotal = panoramaOriginals.reduce((sum, file) => sum + file.size, 0);
 
 const checks = [
@@ -81,6 +85,12 @@ const checks = [
     budgets.asyncJs
   ),
   assertBudget("optimized media total", optimizedMediaTotal, budgets.optimizedMediaTotal),
+  assertBudget("uploaded media total", uploadedMediaTotal, budgets.uploadedMediaTotal),
+  assertBudget(
+    "largest uploaded media",
+    Math.max(0, ...uploadedMedia.map((file) => file.size)),
+    budgets.largestUploadedMedia
+  ),
   assertBudget("panorama originals total", panoramaOriginalTotal, budgets.panoramaOriginalTotal),
   assertBudget(
     "largest panorama original",

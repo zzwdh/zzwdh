@@ -52,3 +52,17 @@ npm run validate:content
 ```
 
 内容文件名必须是小写英文、数字和连字符组成的 slug。视频、全景的 `order` 也必须填写且不能重复；视频 `externalUrl` 必须是完整的 `http(s)` 外链。
+
+## Pages CMS 后台
+
+仓库根目录的 `.pages.yml` 已经配置 Pages CMS 托管版。登录 `https://app.pagescms.org/` 后连接 GitHub 仓库，即可编辑作品、视频、全景和站点设置。
+
+后台新增作品时：
+
+- 文件名继续使用小写英文、数字和连字符组成的 slug。
+- 现有素材继续使用 `local` + `key`，不要改动 `assets/` 与 `src/data/media.ts` 的关系。
+- 后台新上传图片使用 `public` 类型，图片会进入 `public/uploads/`，内容里保存为 `/uploads/...`。
+- 360 全景仍优先使用 `public/panorama/`，不要把未压缩的大原图上传到 `public/uploads/`。
+- 保存后等待 GitHub `Verify` 检查通过，再发布服务器上的 `dist/`。
+
+后台上传图片前先压缩到网页尺寸。`npm run budget` 会检查 `dist/uploads/`，单张后台上传图片超过 3 MB 或总量超过 30 MB 会失败。

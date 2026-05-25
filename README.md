@@ -30,6 +30,16 @@ npm run budget
 
 新增作品时，先把图片放进 `assets/photography/` 或 `assets/drone/`，再复制一份 `src/content/works/` 里的 JSON 改内容。`featured` 控制是否上首页精选，`archive` 控制是否进入档案馆，`storyStatus: "ready"` 才会在详情页显示“查看这张照片的故事”提示。
 
+也可以通过 Pages CMS 托管版维护内容。根目录 `.pages.yml` 已经配置作品、视频、全景和站点设置四组入口。登录 `https://app.pagescms.org/` 并连接 GitHub 仓库 `zzwdh/zzwdh` 的 `main` 分支后，即可在浏览器里编辑这些 JSON 内容。
+
+Pages CMS 新上传的普通图片会进入 `public/uploads/`，内容字段保存为：
+
+```json
+{ "type": "public", "url": "/uploads/example.jpg" }
+```
+
+现有 `assets/` 图片继续使用 `local` + `key`，不要在后台里改成 `/uploads/`。后台上传前先压缩图片；构建预算会检查 `dist/uploads/`，单张上传图超过 3 MB 或总量超过 30 MB 会失败。
+
 图片字段已经按对象存储/CDN 设计。现在可以继续用本地素材：
 
 ```json
