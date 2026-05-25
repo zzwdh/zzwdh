@@ -17,11 +17,13 @@ const launchButtons = Array.from(section?.querySelectorAll<HTMLButtonElement>(".
 const viewerElement = section?.querySelector<HTMLElement>(".panorama-viewer");
 const statusElement = section?.querySelector<HTMLElement>(".panorama-status");
 const previewImage = section?.querySelector<HTMLImageElement>(".panorama-preview img");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 let viewer: PannellumViewer | undefined;
 let activePanoramaUrl = "";
 let isLoading = false;
 let stylesheetPromise: Promise<void> | undefined;
+let viewerMotionTimer: number | undefined;
 
 const setStatus = (message: string) => {
   if (statusElement) statusElement.textContent = message;
@@ -65,6 +67,7 @@ const startPanorama = async (launchButton: HTMLButtonElement) => {
   if (activePanoramaUrl === panoramaUrl && section.classList.contains("is-active")) return;
 
   isLoading = true;
+  section.classList.add("is-loading");
   setButtonsDisabled(true);
   selectButton(launchButton);
   setStatus(`正在确认${launchButton.dataset.title ?? "全景"}原图...`);
@@ -91,6 +94,11 @@ const startPanorama = async (launchButton: HTMLButtonElement) => {
     viewer?.destroy?.();
     viewerElement.innerHTML = "";
     section.classList.add("is-active");
+    if (!reduceMotion) {
+      window.clearTimeout(viewerMotionTimer);
+      section.classList.add("is-viewer-entering");
+      viewerMotionTimer = window.setTimeout(() => section.classList.remove("is-viewer-entering"), 720);
+    }
     activePanoramaUrl = panoramaUrl;
     setStatus("原图已打开，拖拽画面即可浏览 360 度全景。");
     viewer = pannellum.viewer(viewerElement, {
@@ -111,6 +119,7 @@ const startPanorama = async (launchButton: HTMLButtonElement) => {
     console.error(error);
   } finally {
     isLoading = false;
+    section.classList.remove("is-loading");
     setButtonsDisabled(false);
   }
 };

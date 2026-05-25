@@ -22,6 +22,7 @@ const categoryLabels = {
         href={`/works/${item.slug}/`}
         aria-label={`查看${item.title}`}
         data-archive-card
+        data-cursor="view"
         data-category={item.category}
       >
         {(item.image || item.imageUrl) && (

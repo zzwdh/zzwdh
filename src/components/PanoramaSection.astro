@@ -22,7 +22,7 @@ const firstPanorama = panoramas[0];
 
   <div class="panorama-showcase">
     <div class="panorama-stage">
-      <div class="panorama-preview" data-art data-label="360 VIEW">
+      <div class="panorama-preview" data-art data-cursor="panorama" data-label="360 VIEW">
         {
           firstPanorama && (
             <img
@@ -41,6 +41,7 @@ const firstPanorama = panoramas[0];
               <button
                 class:list={["panorama-launch", index === 0 && "is-selected"]}
                 type="button"
+                data-cursor="link"
                 data-panorama={item.panoramaUrl}
                 data-yaw={item.initialYaw}
                 data-pitch={item.initialPitch}

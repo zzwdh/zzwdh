@@ -46,7 +46,7 @@ const slides = Array.from({ length: Math.ceil(enhancedItems.length / chunkSize) 
       <p>{copy}</p>
       {
         actionHref && actionLabel && (
-          <a class="section-action" href={actionHref}>
+          <a class="section-action" href={actionHref} data-cursor="link">
             {actionLabel}
           </a>
         )
@@ -63,9 +63,24 @@ const slides = Array.from({ length: Math.ceil(enhancedItems.length / chunkSize) 
   >
     <div class="featured-carousel-topbar">
       <p class="featured-carousel-count" data-featured-status aria-live="polite">第 1 组 / 共 {slides.length} 组</p>
+      <div class="featured-carousel-progress" aria-hidden="true">
+        <span data-featured-progress></span>
+      </div>
       <div class="featured-carousel-controls" aria-label="切换精选作品">
-        <button class="featured-carousel-button" type="button" data-featured-prev aria-label="上一组作品">←</button>
-        <button class="featured-carousel-button" type="button" data-featured-next aria-label="下一组作品">→</button>
+        <button
+          class="featured-carousel-button"
+          type="button"
+          data-featured-prev
+          aria-label="上一组作品"
+          data-cursor="link">←</button
+        >
+        <button
+          class="featured-carousel-button"
+          type="button"
+          data-featured-next
+          aria-label="下一组作品"
+          data-cursor="link">→</button
+        >
       </div>
     </div>
 
@@ -93,6 +108,7 @@ const slides = Array.from({ length: Math.ceil(enhancedItems.length / chunkSize) 
                     !hasImage && "is-missing"
                   ]}
                   data-art
+                  data-cursor={hasImage ? "view" : undefined}
                   data-label={item.label}
                   data-placeholder={item.placeholder ?? "待补作品"}
                   data-caption={item.title}
@@ -135,6 +151,7 @@ const slides = Array.from({ length: Math.ceil(enhancedItems.length / chunkSize) 
             class="featured-carousel-dot"
             type="button"
             data-featured-dot={index}
+            data-cursor="link"
             aria-current={index === 0 ? "true" : "false"}
             aria-label={`查看第 ${index + 1} 组作品`}
           >

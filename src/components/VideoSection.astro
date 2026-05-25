@@ -49,6 +49,7 @@ const { items } = Astro.props;
                 class:list={["video-cover", !hasImage && "is-missing"]}
                 href={item.externalUrl}
                 data-art
+                data-cursor="play"
                 data-label={item.label}
                 data-placeholder={item.placeholder ?? "待放入视频"}
               >
@@ -58,6 +59,7 @@ const { items } = Astro.props;
               <div
                 class:list={["video-cover", !hasImage && "is-missing"]}
                 data-art
+                data-cursor={hasImage ? "play" : undefined}
                 data-label={item.label}
                 data-placeholder={item.placeholder ?? "待放入视频"}
               >

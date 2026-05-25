@@ -29,7 +29,7 @@ const hasStory = work.storyStatus === "ready" && work.detail.paragraphs.length >
 <BaseLayout title={`${work.title} | ${site.title}`} description={work.description}>
   <SiteHeader title={site.navTitle} items={innerNavItems} homeHref="/" />
   <main id="top" class:list={["work-detail-page", `detail-style-${work.detail.style}`]}>
-    <a class="back-link" href="/archive/">返回档案馆</a>
+    <a class="back-link" href="/archive/" data-cursor="link">返回档案馆</a>
 
     <article class="work-detail">
       <header class="work-detail-header">
@@ -88,8 +88,8 @@ const hasStory = work.storyStatus === "ready" && work.detail.paragraphs.length >
     </article>
 
     <nav class="work-detail-nav" aria-label="相邻作品">
-      <a href={`/works/${previousWork.slug}/`}>上一张：{previousWork.title}</a>
-      <a href={`/works/${nextWork.slug}/`}>下一张：{nextWork.title}</a>
+      <a href={`/works/${previousWork.slug}/`} data-cursor="link">上一张：{previousWork.title}</a>
+      <a href={`/works/${nextWork.slug}/`} data-cursor="link">下一张：{nextWork.title}</a>
     </nav>
   </main>
 
@@ -97,11 +97,11 @@ const hasStory = work.storyStatus === "ready" && work.detail.paragraphs.length >
     hasStory && (
       <>
         <aside class="story-nudge" data-story-nudge aria-hidden="true" inert>
-          <button class="story-nudge-main" type="button" data-story-open>
+          <button class="story-nudge-main" type="button" data-story-open data-cursor="link">
             <span>想看这张照片的故事吗？</span>
             <strong>查看故事</strong>
           </button>
-          <button class="story-nudge-dismiss" type="button" data-story-dismiss aria-label="暂时不看">
+          <button class="story-nudge-dismiss" type="button" data-story-dismiss aria-label="暂时不看" data-cursor="link">
             ×
           </button>
         </aside>
@@ -116,7 +116,7 @@ const hasStory = work.storyStatus === "ready" && work.detail.paragraphs.length >
           aria-label={`${work.title}的故事`}
           inert
         >
-          <button class="story-panel-close" type="button" data-story-close aria-label="关闭故事">
+          <button class="story-panel-close" type="button" data-story-close aria-label="关闭故事" data-cursor="link">
             ×
           </button>
           <p class="section-kicker">{work.detail.eyebrow ?? work.label}</p>

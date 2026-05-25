@@ -12,6 +12,48 @@ window.addEventListener("scroll", updateHeader, { passive: true });
 if (!motionQuery.matches) {
   document.documentElement.classList.add("motion-ready");
 
+  const pieceGroups = Array.from(
+    document.querySelectorAll<HTMLElement>(
+      ".section-heading, .about-copy, .contact-inner, .archive-hero, .work-detail-header, .work-detail-copy"
+    )
+  );
+
+  pieceGroups.forEach((group) => {
+    const rawPieces = Array.from(
+      group.querySelectorAll<HTMLElement>(
+        ".section-kicker, h1, h2, h3, p, .section-heading-copy, .contact-actions, .social-links, .qr-card, .work-meta, .work-tags"
+      )
+    );
+    const pieces = rawPieces.filter((piece) => !rawPieces.some((other) => other !== piece && other.contains(piece)));
+
+    pieces.forEach((piece, index) => {
+      piece.dataset.motionPiece = "";
+      piece.style.setProperty("--piece-delay", `${Math.min(index, 5) * 70}ms`);
+    });
+  });
+
+  const imageTargets = Array.from(
+    document.querySelectorAll<HTMLImageElement>(
+      ".gallery-item img, .archive-card img, .video-cover img, .panorama-preview img, .work-detail-image img, .qr-card img"
+    )
+  );
+
+  imageTargets.forEach((image, index) => {
+    image.dataset.imageReveal = "";
+    image.style.setProperty("--image-reveal-delay", `${Math.min(index % 8, 7) * 45}ms`);
+
+    const revealImage = () => {
+      window.requestAnimationFrame(() => image.classList.add("is-loaded"));
+    };
+
+    if (image.complete) {
+      revealImage();
+    } else {
+      image.addEventListener("load", revealImage, { once: true });
+      image.addEventListener("error", revealImage, { once: true });
+    }
+  });
+
   const revealSelectors = [
     ".section-heading",
     ".gallery-item",

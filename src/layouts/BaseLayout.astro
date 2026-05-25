@@ -24,7 +24,14 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <slot />
+    <div class="focus-cursor" aria-hidden="true">
+      <span class="focus-cursor-ring"></span>
+      <span class="focus-cursor-dot"></span>
+      <span class="focus-cursor-label"></span>
+    </div>
     <script>
+      import "@scripts/cursor";
+      import "@scripts/press-effect";
       import "@scripts/reveal";
     </script>
   </body>

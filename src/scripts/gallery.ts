@@ -39,7 +39,19 @@ const queueStoryLink = (item: HTMLButtonElement) => {
   );
 };
 
-const openLightbox = (item: HTMLButtonElement) => {
+const setLightboxDirection = (direction: number, wasOpen: boolean) => {
+  if (!lightbox || reduceMotion) return;
+
+  lightbox.dataset.lightboxDirection = direction > 0 ? "next" : direction < 0 ? "previous" : "open";
+  lightbox.classList.remove("is-switching");
+
+  if (wasOpen && direction !== 0) {
+    void lightbox.offsetWidth;
+    lightbox.classList.add("is-switching");
+  }
+};
+
+const openLightbox = (item: HTMLButtonElement, direction = 0) => {
   if (!lightbox || !lightboxImage || !lightboxCaption) return;
 
   const image = item.querySelector<HTMLImageElement>("img");
@@ -53,6 +65,7 @@ const openLightbox = (item: HTMLButtonElement) => {
   lightboxImage.src = item.dataset.fullSrc || image.currentSrc || image.src;
   lightboxImage.alt = image.alt;
   lightboxCaption.textContent = item.dataset.caption || image.alt;
+  setLightboxDirection(direction, wasOpen);
   lightbox.classList.add("is-open");
   lightbox.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
@@ -64,6 +77,8 @@ const closeLightbox = () => {
   if (!lightbox) return;
   hideStoryLink();
   lightbox.classList.remove("is-open");
+  lightbox.classList.remove("is-switching");
+  delete lightbox.dataset.lightboxDirection;
   lightbox.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
   previousFocus?.focus();
@@ -72,7 +87,7 @@ const closeLightbox = () => {
 const showAdjacent = (direction: number) => {
   if (!lightbox?.classList.contains("is-open") || !galleryItems.length) return;
   activeIndex = (activeIndex + direction + galleryItems.length) % galleryItems.length;
-  openLightbox(galleryItems[activeIndex]);
+  openLightbox(galleryItems[activeIndex], direction);
 };
 
 galleryItems.forEach((item) => {

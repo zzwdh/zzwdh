@@ -31,13 +31,30 @@
 }
 
 .story-nudge-main {
+  position: relative;
   min-width: min(330px, calc(100vw - 88px));
   display: grid;
   gap: 4px;
   border-radius: 18px;
+  overflow: hidden;
   padding: 15px 18px;
   text-align: left;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+}
+
+.story-nudge-main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, transparent, rgba(215, 180, 106, 0.12), transparent);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-40%);
+}
+
+.story-nudge.is-visible .story-nudge-main::before {
+  animation: story-nudge-sheen 1300ms var(--ease) 220ms both;
 }
 
 .story-nudge-main span {
@@ -97,10 +114,69 @@
     transform 420ms var(--ease);
 }
 
+.story-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(180deg, rgba(215, 180, 106, 0.12), transparent 34%),
+    linear-gradient(90deg, rgba(244, 239, 231, 0.08), transparent 28%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 420ms var(--ease);
+}
+
 .story-panel.is-open {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0) scale(1);
+}
+
+.story-panel.is-open::before {
+  opacity: 1;
+}
+
+.motion-ready .story-panel .section-kicker,
+.motion-ready .story-panel h2,
+.motion-ready .story-panel-body p,
+.motion-ready .story-panel .story-panel-meta,
+.motion-ready .story-panel .story-panel-tags {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 560ms var(--ease),
+    transform 560ms var(--ease);
+}
+
+.motion-ready .story-panel.is-open .section-kicker,
+.motion-ready .story-panel.is-open h2,
+.motion-ready .story-panel.is-open .story-panel-body p,
+.motion-ready .story-panel.is-open .story-panel-meta,
+.motion-ready .story-panel.is-open .story-panel-tags {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.motion-ready .story-panel.is-open h2 {
+  transition-delay: 70ms;
+}
+
+.motion-ready .story-panel.is-open .story-panel-body p:nth-child(1) {
+  transition-delay: 130ms;
+}
+
+.motion-ready .story-panel.is-open .story-panel-body p:nth-child(2) {
+  transition-delay: 190ms;
+}
+
+.motion-ready .story-panel.is-open .story-panel-body p:nth-child(n + 3) {
+  transition-delay: 250ms;
+}
+
+.motion-ready .story-panel.is-open .story-panel-meta,
+.motion-ready .story-panel.is-open .story-panel-tags {
+  transition-delay: 310ms;
 }
 
 .story-panel-close {
@@ -144,26 +220,52 @@ body.story-is-open {
   position: fixed;
   inset: 0;
   z-index: 60;
-  display: none;
+  display: grid;
   place-items: center;
   padding: 54px clamp(18px, 4vw, 60px);
   background: rgba(4, 5, 7, 0.92);
   backdrop-filter: blur(18px);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 320ms var(--ease),
+    visibility 320ms var(--ease);
+  visibility: hidden;
 }
 
 .lightbox.is-open {
-  display: grid;
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
 }
 
 .lightbox figure {
   width: min(1120px, 100%);
   margin: 0;
+  opacity: 0;
+  transform: translateY(22px) scale(0.97);
+  transition:
+    opacity 420ms var(--ease),
+    transform 420ms var(--ease);
+}
+
+.lightbox.is-open figure {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .lightbox img {
   width: 100%;
   max-height: 78svh;
   object-fit: contain;
+}
+
+.lightbox.is-switching img {
+  animation: lightbox-image-next 360ms var(--ease) both;
+}
+
+.lightbox[data-lightbox-direction="previous"].is-switching img {
+  animation-name: lightbox-image-previous;
 }
 
 .lightbox figcaption {
@@ -243,4 +345,44 @@ body.story-is-open {
 
 .lightbox-next {
   right: 24px;
+}
+
+@keyframes lightbox-image-next {
+  from {
+    opacity: 0;
+    transform: translateX(28px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes lightbox-image-previous {
+  from {
+    opacity: 0;
+    transform: translateX(-28px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes story-nudge-sheen {
+  from {
+    opacity: 0;
+    transform: translateX(-45%);
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(45%);
+  }
 }

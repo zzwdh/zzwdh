@@ -10,7 +10,9 @@ carousels.forEach((carousel) => {
   const previousButton = carousel.querySelector<HTMLButtonElement>("[data-featured-prev]");
   const nextButton = carousel.querySelector<HTMLButtonElement>("[data-featured-next]");
   const status = carousel.querySelector<HTMLElement>("[data-featured-status]");
+  const progress = carousel.querySelector<HTMLElement>("[data-featured-progress]");
   const interval = Number(carousel.dataset.interval ?? 5500);
+  carousel.style.setProperty("--featured-interval", `${interval}ms`);
 
   if (slides.length <= 1) return;
 
@@ -22,12 +24,22 @@ carousels.forEach((carousel) => {
   const stop = () => {
     window.clearInterval(timer);
     timer = undefined;
+    carousel.classList.remove("is-playing");
   };
 
   const canAutoplay = () => !reduceMotion && !isInteracting && !isLightboxOpen && !document.hidden;
 
+  const restartProgress = () => {
+    if (!progress || reduceMotion) return;
+    progress.style.animation = "none";
+    void progress.offsetWidth;
+    progress.style.animation = "";
+  };
+
   const start = () => {
     if (!canAutoplay() || timer) return;
+    restartProgress();
+    carousel.classList.add("is-playing");
     timer = window.setInterval(() => showSlide(activeIndex + 1), interval);
   };
 
@@ -49,6 +61,8 @@ carousels.forEach((carousel) => {
     if (status) {
       status.textContent = `第 ${activeIndex + 1} 组 / 共 ${slides.length} 组`;
     }
+
+    if (timer) restartProgress();
   };
 
   const restart = () => {

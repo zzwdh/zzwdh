@@ -11,11 +11,17 @@ const { title, items, homeHref = "#top" } = Astro.props;
 ---
 
 <header class="site-header" aria-label="主导航">
-  <a class="brand" href={homeHref} aria-label="回到首页">
+  <a class="brand" href={homeHref} aria-label="回到首页" data-cursor="link">
     <span class="brand-mark" aria-hidden="true"></span>
     <span>{title}</span>
   </a>
   <nav class="nav-links" aria-label="页面导航">
-    {items.map((item) => <a href={item.href}>{item.label}</a>)}
+    {
+      items.map((item) => (
+        <a href={item.href} data-cursor="link">
+          {item.label}
+        </a>
+      ))
+    }
   </nav>
 </header>

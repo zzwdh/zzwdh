@@ -142,6 +142,11 @@
     flex-direction: column;
   }
 
+  .featured-carousel-progress {
+    width: 100%;
+    flex-basis: auto;
+  }
+
   .featured-carousel-controls {
     width: 100%;
     justify-content: space-between;
@@ -231,5 +236,33 @@
   .featured-carousel-card,
   .featured-carousel-slide.is-active .featured-carousel-card {
     opacity: 1;
+  }
+
+  .focus-cursor {
+    display: none !important;
+  }
+
+  .press-effects {
+    display: none !important;
+  }
+
+  .archive-card.is-entering,
+  .is-press-lit,
+  .press-burst,
+  .panorama-section.is-viewer-entering .panorama-viewer,
+  .story-nudge.is-visible .story-nudge-main::before,
+  .motion-ready .contact-inner.is-visible::before,
+  .motion-ready .work-detail-image.is-visible::after {
+    animation: none;
+  }
+
+  .hero-media img {
+    transform: scale(1.045);
+  }
+
+  .hero-shade {
+    background:
+      linear-gradient(90deg, rgba(4, 5, 7, 0.9) 0%, rgba(4, 5, 7, 0.56) 42%, rgba(4, 5, 7, 0.12) 100%),
+      linear-gradient(0deg, rgba(4, 5, 7, 0.94) 0%, rgba(4, 5, 7, 0.2) 48%, rgba(4, 5, 7, 0.72) 100%);
   }
 }
