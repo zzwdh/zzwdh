@@ -1030,6 +1030,24 @@ div.video-cover {
   color: rgba(244, 239, 231, 0.58);
 }
 
+.icp-record {
+  margin: 4px 0 0;
+  color: rgba(244, 239, 231, 0.54);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.icp-record a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 220ms var(--ease);
+}
+
+.icp-record a:hover,
+.icp-record a:focus-visible {
+  color: #fffaf1;
+}
+
 .qr-card {
   grid-column: 2;
   grid-row: 1 / span 5;

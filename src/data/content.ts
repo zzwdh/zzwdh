@@ -79,6 +79,8 @@ export type SiteSettings = {
   eyebrow: string;
   email: string;
   wechat: string;
+  icpNumber?: string;
+  icpUrl?: string;
   socials: SocialLink[];
   heroImage?: ImageMetadata;
   heroImageUrl?: string;

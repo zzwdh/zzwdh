@@ -105,6 +105,8 @@ const settings = defineCollection({
     eyebrow: z.string(),
     email: z.string(),
     wechat: z.string(),
+    icpNumber: z.string().optional(),
+    icpUrl: z.string().url().optional(),
     socials: z.array(
       z.object({
         label: z.string(),

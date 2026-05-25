@@ -9,9 +9,11 @@ type Props = {
   socials: SocialLink[];
   qr?: ImageMetadata;
   qrUrl?: string;
+  icpNumber?: string;
+  icpUrl?: string;
 };
 
-const { email, wechat, socials, qr, qrUrl } = Astro.props;
+const { email, wechat, socials, qr, qrUrl, icpNumber, icpUrl = "https://beian.miit.gov.cn/" } = Astro.props;
 ---
 
 <section id="contact" class="contact-section">
@@ -55,5 +57,14 @@ const { email, wechat, socials, qr, qrUrl } = Astro.props;
         decoding="async"
       />
     </div>
+    {
+      icpNumber && (
+        <p class="icp-record">
+          <a href={icpUrl} target="_blank" rel="noreferrer">
+            {icpNumber}
+          </a>
+        </p>
+      )
+    }
   </div>
 </section>
